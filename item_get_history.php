@@ -46,9 +46,9 @@ if (!session_start()){
             echo '
             <thead>
                 <tr>
-                    <th>Trxn ID</th>
-                    <th>User ID</th>  
-                    <th>Received</th>  
+                    <th>Trxn ID</th>'.
+                    // <th>User ID</th>  
+                    '<th>Received</th>  
                     <th>Issued</th>      
                     <th>Bal</th>
                     <th>Avail.</th>
@@ -78,7 +78,7 @@ if (!session_start()){
                 </a>&nbsp;'.
                 
                 $row['transaction_id']      . '</td><td class="center">' .
-                $row['user_id']             . '</td><td class="center">' . 
+                //$row['user_id']             . '</td><td class="center">' . 
                 $row['quantity_received']   . '</td><td class="center">' .
                 $row['quantity_release']    . '</td><td class="center">' .
                 $row['balance_stock']       . '</td><td class="center">' .
