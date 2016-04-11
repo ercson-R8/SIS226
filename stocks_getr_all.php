@@ -7,7 +7,7 @@ if (!session_start()){
 ?>
 
 
-<table class="table table-striped table-bordered table-hover " id="dataTables-stocks">
+<table class="table table-striped table-bordered table-hover " id="dataTables-items">
     
 <?php
     if(true) {
@@ -34,7 +34,6 @@ if (!session_start()){
                     <th>Name</th>
                     <th>No.</th>  
                     <th>Loc.</th>  
-                    <th>Unit</th>      
                     <th>Supplier</th>
                     <th>Brand</th>
                     <th>Description</th>
@@ -48,24 +47,19 @@ if (!session_start()){
             while($row = mysqli_fetch_array($response)){
                 
                 echo '<tr class="center "><td>' . 
-                '<a href="item_history.php" class="btn btn-xs btn-primary">
-                    <span class="fa fa-history"></span>
-                </a>&nbsp;';
-                echo 
-                '<a href="item_edit_form.php?i='.$row['item_number'].'" class="btn btn-xs btn-warning">
-                    <span class="fa fa-edit"></span>
+                '<a href="item_history.php?i='.$row['item_number'].'" class="btn btn-xs btn-primary">
+                    <span class="fa fa-plus-square"></span>
                 </a>&nbsp;'.
                 $row['name']            . '</td><td class="center ">' .
                 $row['item_number']     . '</td><td class="center">' . 
                 $row['location']        . '</td><td class="center">' . 
-                $row['unit'] 		    . '</td><td class="center">' .
                 $row['supplier']        . '</td><td class="center">' .
                 $row['brand']           . '</td><td class="center">' .
                 $row['description']     . '</td class="center">' .
 
                 '</tr>';
             }
-            echo '</tbody> </table>';  
+            echo '</tbody> </table> </div>';  
             }else {
                 echo "Couldn't issue database query<br />";
                 echo mysqli_error($dbc);

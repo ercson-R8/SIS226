@@ -1,8 +1,7 @@
 <?php
-
     if (!session_start()){
         session_start();
-        }
+    }
     error_reporting(0);
 ?>
 <!DOCTYPE html>
@@ -74,7 +73,7 @@
                             <div class="dataTable_wrapper">
                                 <!-- here wwill table data will be displayed -->
                                 <div class="table-responsive">
-                                    <?php require_once('item_get_all.php'); ?>
+                                    <?php require_once('stocks_getr_all.php'); ?> 
                                 
                                 </div>
                             <!-- /.table-responsive -->

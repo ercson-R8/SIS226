@@ -1,9 +1,9 @@
 <?php
 
-if (!session_start()){
-    session_start();
-    }
-error_reporting(0);
+    if (!session_start()){
+        session_start();
+        }
+    error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@ error_reporting(0);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Receive Stocks</title>
+    <title>Inventory Items</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -72,11 +72,11 @@ error_reporting(0);
                         <div class="panel-body">
                             
                             <div class="dataTable_wrapper">
-                                <!-- here table data will be displayed -->
+                                <!-- here wwill table data will be displayed -->
                                 <div class="table-responsive">
-                                <?php require_once('item_get_all.php'); ?>
-                                 </div>
-                            </div>
+                                    <?php require_once('item_get_all.php'); ?>
+                                
+                                </div>
                             <!-- /.table-responsive -->
                             
                             <!-- credits to DataTables  https://datatables.net/ -->
@@ -122,7 +122,7 @@ error_reporting(0);
     
     // Initialising DataTables
     $(document).ready(function() {
-        $('#dataTables-stocks').DataTable({
+        $('#dataTables-items').DataTable({
                 responsive: true
         });
     });
