@@ -3,8 +3,7 @@
 if (!session_start()){
     session_start();
 }
-//echo 'you have landed...<br/>';
-//echo var_dump($_POST);
+
 
 if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
 	if(true){       // if(isset($_POST['submit'])){         // && !($_SESSION["isSessionDone"]) ){
