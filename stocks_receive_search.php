@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Inventory Items</title>
+    <title>Receive Stocks</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -95,27 +95,27 @@
     <!-- /#wrapper -->
     
     <?php // tag added just to be able to fold this block
-    if (true){
-    echo '
-        <!-- jQuery -->
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        if (true){
+        echo '
+            <!-- jQuery -->
+            <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+            <!-- Bootstrap Core JavaScript -->
+            <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+            <!-- Metis Menu Plugin JavaScript -->
+            <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-        <!-- DataTables JavaScript -->
-        <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-        <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+            <!-- DataTables JavaScript -->
+            <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+            <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
-        <!-- Custom Theme JavaScript -->
-        <script src="dist/js/sb-admin-2.js"></script>
+            <!-- Custom Theme JavaScript -->
+            <script src="dist/js/sb-admin-2.js"></script>
 
-        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    ';
-    }
+            <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        ';
+        }
     ?>
     <script>
     
