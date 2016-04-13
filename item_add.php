@@ -101,8 +101,6 @@ if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
                 $balance_available = 0;
                 $date_process = date("Y-m-d"); 
                 
-                
-
                 $query = "INSERT INTO stock ( transaction_id, item_number, user_id,
                                                 	quantity_received, quantity_release, balance_stock,
                                                     balance_available,	date_process ) 
@@ -129,7 +127,6 @@ if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
             
         }
     }
-
 
     $s = "Location: item_add_form.php?s=". $op_status."&n=".$item_name." r= ".$r;
     header($s);

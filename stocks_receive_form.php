@@ -161,7 +161,7 @@ error_reporting(0);
                             <!-- /.row (nested) -->
                             
                             <hr>
-                                <form action="stocks_receive_update.php" name="stocksReceive" id="stocksReceive"  method="post">
+                                <form action="stocks_receive_update.php" name="stocksReceive" id="stocksReceive"  onclick="return hashPassword();"method="post">
                                         <div class="row">
                                             <div class="col-lg-1">
                                             </div>
@@ -188,7 +188,7 @@ error_reporting(0);
                                                 <div class="form-group">
                                                     <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="" required>    
                                                 </div>
-                                                <button type="submit" name="btnStocksReceive" class="btn btn-primary btn-lg btn-block"  onclick="formhash(this.form, this.form.password)">
+                                                <button type="submit" name="btnStocksReceive" class="btn btn-primary btn-lg btn-block"  >
                                                     Confirm
                                                 </button>
                                                 <a href="index.php" id="cancel" class="btn btn-warning btn-lg btn-block">Cancel </a>
@@ -246,10 +246,9 @@ error_reporting(0);
         
     }
     $i = ( $_GET['i'] ); // old item_number
-    echo var_dump($GLOBALS);
     $i = 'EL-CM-0000'; // for testing purpose only. to be removed later.
-    $currentUserID = 2; // for testing purpose only. to be removed later
-
+    $currentUserID = 2; // for testing purpose only. to be removed later, this should be a session var userID
+    $data[itemNumber] = $i;
     $extra = "ORDER BY stock_id DESC LIMIT 1";
     $row = queryDb( 'stock', 'item_number',$i, $extra); // fetch the all data from the given table
     
@@ -268,18 +267,20 @@ error_reporting(0);
     
     // parameter s is status of stocks_receive_update.php which will either contain t/f
     if (isset($_GET['s']) ){ 
-        if (isset($_GET['s']) == 's'){
+        if (isset($_GET['s']) == '1'){
             $data['status'] = '<div class="alert alert-success alert-dismissable fade in">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button>
                                 <div class="text-center"><h4> The item <b>'.$data['itemName'] .'</b> was UPDATED successfully !</h4></div>
                             </div>';
         }else{
-            $data['fail'] = '<div class="alert alert-danger alert-dismissable fade in">
+            $data['status'] = '<div class="alert alert-danger alert-dismissable fade in">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <div class="text-center"> The item <b>'.$data['itemName'] .'</b> was NOT updated successfully!</div>
                         </div>';
         }
         
+    }else{
+        $data['status']="";
     }            
     mysqli_close($dbc);
    ?>
@@ -294,10 +295,25 @@ error_reporting(0);
             document.getElementById("description").innerHTML = data['description'];
             document.getElementById("supplier").innerHTML = data['supplier'];
             document.getElementById("supplier").innerHTML = data['supplier'];
+            document.getElementById("stockUpdateStatus").innerHTML = data['status'];
             
             document.forms["stocksReceive"]["userID"].value = data['userID'];
+            document.forms["stocksReceive"]["remarks_store_manager"].value = "";
             document.forms["stocksReceive"]["stockBal"].value = data['balance_stock'];
             document.forms["stocksReceive"]["availBal"].value = data['balance_available'];
+            document.forms["stocksReceive"]["itemNumber"].value = data['itemNumber'];
+            
+        }
+        
+        function hashPassword(){
+            password = document.forms["stocksReceive"]["password"].value;
+            if (password != ""){
+                password = hex_sha512(password);
+                document.forms["stocksReceive"]["password"].value = password;
+                return true;
+            }
+            
+            //alert(hashedPW);
             
             
         }
