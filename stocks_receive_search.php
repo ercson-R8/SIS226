@@ -71,7 +71,7 @@
                         <div class="panel-body">
                             
                             <div class="dataTable_wrapper">
-                                <!-- here wwill table data will be displayed -->
+                                <!-- here will table data will be displayed -->
                                 <div class="table-responsive">
                                     <?php require_once('stocks_getr_all.php'); ?> 
                                 

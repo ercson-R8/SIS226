@@ -7,6 +7,8 @@ if (!session_start()){
 if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
 	if(isset($_POST['submit'])){       // if(isset($_POST['submit'])){         // && !($_SESSION["isSessionDone"]) ){
         
+        
+        
         $data 	 = $_POST['data'];
 	    foreach ($data as $key => $value) {
 		    $data[$key] = strip_tags($value);
@@ -56,7 +58,7 @@ if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
                 // $item_number= will be taken from the recently created item
                 $quantity	= 0;
                 $status	= 'Approved';
-                $remarks_authorizer	= 'Authorizer bypassed.';
+                $remarks_authorizer	= 'Authorizer not required.';
                 // date_release	= this is auto NULL
                 $store_manager	= 2; // this should be replaced with the global session user id
                 $remarks_store_manager	= 'Initial addition of an inventory item';
