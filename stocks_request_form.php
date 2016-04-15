@@ -2,7 +2,7 @@
 
 
     /*
-    * This page will be called by stocks_receive_search.php passing the i paramater (item no.)
+    * This page will be called by stocks_request_search.php passing the i paramater (item no.)
     * This form will call on stocks_get_balance.php passing the item_number as paramater
     * the stocks_get_balance.php will return the following
     */
@@ -26,7 +26,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Receive Stocks</title>
+    <title>Request Stocks</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -60,7 +60,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header">Receive Stocks Form</h2>
+                    <h2 class="page-header">Request Stocks Form</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -77,7 +77,6 @@
                             <div class="row">
                                 <div class="col-lg-0"> </div>
                                 <div class="col-lg-12">
-
                                     <div class="col-lg-3 col-md-6">
                                         <div class="panel panel-primary">
                                             <div class="panel-heading">
@@ -155,7 +154,7 @@
                             <!-- /.row (nested) -->
                             
                             <hr>
-                                <form action="stocks_receive_update.php" name="stocksReceive" id="stocksReceive"  onclick="return hashPassword();"method="post">
+                                <form action="stocks_request_update.php" name="stocksReceive" id="stocksReceive"  onsubmit="return verifyInputs();"method="post">
                                         <div class="row">
                                             <div class="col-lg-1">
                                             </div>
@@ -239,7 +238,7 @@
     }
     $i = ( $_GET['i'] ); // old item_number
     //$i = 'EL-CM-0000'; // for testing purpose only. to be removed later.
-    $currentUserID = 10011; // this should be replaced with the global session user id $_SESSION["userID"];
+    $currentUserID = 2; // for testing purpose only. to be removed later, this should be a session var userID
     $data[itemNumber] = $i;
     $extra = "ORDER BY stock_id DESC LIMIT 1";
     $row = queryDb( 'stock', 'item_number',$i, $extra); // fetch the all data from the given table
@@ -262,12 +261,12 @@
         if (isset($_GET['s']) == '1'){
             $data['status'] = '<div class="alert alert-success alert-dismissable fade in">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button>
-                                <div class="text-center"><h4> The item <b>'.$data['itemName'] .'</b> was UPDATED successfully !</h4></div>
+                                <div class="text-center"><h4> The item <b>'.$data['itemName'] .'</b> was REQUESTED successfully !</h4></div>
                             </div>';
         }else{
             $data['status'] = '<div class="alert alert-danger alert-dismissable fade in">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <div class="text-center"> The item <b>'.$data['itemName'] .'</b> was NOT updated successfully!</div>
+                            <div class="text-center"> The item <b>'.$data['itemName'] .'</b> was NOT requested successfully!</div>
                         </div>';
         }
         
@@ -299,8 +298,26 @@
             
         }
         
+        function verifyInputs(){
+            quantity = parseInt(document.forms["stocksReceive"]["quantity"].value,10);
+            availBal = parseInt(document.forms["stocksReceive"]["availBal"].value,10);
+            if (quantity <= availBal){
+                return hashPassword();
+            }else {
+                alert('There is not enough stocks for this request!');
+                return false;
+            }
+            
+        }
+        
+        
         function hashPassword(){
+            
             password = document.forms["stocksReceive"]["password"].value;
+            
+            
+           
+            
             if (password != ""){
                 password = hex_sha512(password);
                 document.forms["stocksReceive"]["password"].value = password;
