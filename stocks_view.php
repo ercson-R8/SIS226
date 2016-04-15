@@ -55,7 +55,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header" id="item_name">Receive Stocks</h1>
+                    <h1 class="page-header" id="item_name">View Stocks</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -73,7 +73,7 @@
                             <div class="dataTable_wrapper">
                                 <!-- here will table data will be displayed -->
                                 <div class="table-responsive">
-                                    <?php require_once('stocks_getr_all.php'); ?> 
+                                    <?php require_once('stocks_getv_all.php'); ?> 
                                 
                                 </div>
                             <!-- /.table-responsive -->

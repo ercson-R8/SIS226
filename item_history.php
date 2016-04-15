@@ -1,4 +1,7 @@
 <?php
+/*
+* this page will be called by item_view.php passing the i parameter that contains the item number 
+*/
 
     if (!session_start()){
         session_start();

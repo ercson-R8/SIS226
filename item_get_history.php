@@ -1,4 +1,9 @@
 <?php
+/*
+* this page will be called by item_history.php and will fetch the i parameter from the item_view.php 
+* the i parameter contains the item number 
+*/
+
     if (!session_start()){
         session_start();
         }  
@@ -11,14 +16,6 @@
     if(true) {
         require_once('mysqli_connect.php');     
         $itemNumber = strip_tags($_GET["i"]);
-        //echo 'item number is '.$itemNumber;
-        // Create a query for the database
-        // SELECT   `transaction_id`, `item_number`, `user_id`, `quantity_received`, `quantity_release`, 
-        //              `balance_stock`, `balance_available`, `date_process` 
-        //          FROM `stock` 
-        //          WHERE `item_number` = 'EL-CM-0000' 
-        //          ORDER BY `stock_id`
-        //$itemNumber = 'EL-CM-0000';
         
         $query ="SELECT transaction_id,
                         item_number,
