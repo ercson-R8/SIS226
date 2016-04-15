@@ -105,9 +105,9 @@ if (!session_start()){
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label>Location</label>
-                                                    <input class="form-control" name="data[location]" placeholder="Where will this item be stored." 
-                                                        pattern="^^[A-Z]{2}-[A-Z]{2}-[0-9]{4}$"
-                                                        title="Zone-Section-Shelf No. ex. AA-BB-1002"
+                                                    <input class="form-control" name="data[location]" placeholder="Where will this item be stored. Ex. AAA01" 
+                                                        pattern="^[A-Z]{1}[A-Z]{2}[0-9]{2}$"
+                                                        title="Zone-Section-Shelf No. "
                                                         required>
                                                 </div>
                                             </div>

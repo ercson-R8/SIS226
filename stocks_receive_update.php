@@ -34,7 +34,10 @@
             // sanitize the date 
             if (true){  
                 $data['quantity'] = (int)strip_tags($_POST['quantity']);
-                $data['userID'] = (int)strip_tags($_POST['userID']);
+                /* once site is live the line below will be used
+                $data['userID'] = $_SESSION["userID"];
+                */
+                $data['userID'] = 10011;
                 $data['suppliedPassword'] = strip_tags($_POST['password']);
                 $data['remarks_store_manager'] = strip_tags($_POST['remarks_store_manager']);
                 $data['itemNumber'] = strip_tags($_POST['itemNumber']);
@@ -44,8 +47,9 @@
             
             // fetch user info
             $row = queryDb( 'user', 'user_id',$data['userID']); 
-            $data['password']      = $row['password'];
-            $data['rights']      = $row['rights'];
+                $data['password']      = $row['password'];
+                $data['rights']      = $row['rights'];
+
             // verify supplied with stored password
             if (true){ // ( $data['password'] == $suppliedPassword) && ($data['rights']==2), for now assume it is true
                 // create an "add" transaction and then update the stocks table

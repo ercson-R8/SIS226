@@ -52,15 +52,16 @@ if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
 
                 // transaction_id	= this is AI
                 $transaction_type= 'add';
-                $authorizer= 2; // this should be replaced with the global session user id
-                $requester= 2; // this should be replaced with the global session user id 
+                
+                $authorizer= 10011; // this should be replaced with the global session user id $_SESSION["userID"];
+                $requester= 10011; // this should be replaced with the global session user id $_SESSION["userID"];
                 //date_requested= this is auto NULL
-                // $item_number= will be taken from the recently created item
+                // $item_number= will be taken from the recently created item, from the code above.
                 $quantity	= 0;
                 $status	= 'Approved';
                 $remarks_authorizer	= 'Authorizer not required.';
                 // date_release	= this is auto NULL
-                $store_manager	= 2; // this should be replaced with the global session user id
+                $store_manager	= 10011; // this should be replaced with the global session user id $_SESSION["userID"];
                 $remarks_store_manager	= 'Initial addition of an inventory item';
                 $date_authorized	= date("Y-m-d");
                 $date_add = date("Y-m-d");
@@ -93,7 +94,7 @@ if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
                 $transaction_id = $last_id; // the recently created ID 
                 $item_number = $item_number;
                 // user id should also be save here
-                $user_id = 1; // this will be taken from the global session var
+                $user_id = 10011; // this will be taken from the global session var $_SESSION["userID"];
                 
                 $quantity_received = 0;
                 $quantity_release = 0;

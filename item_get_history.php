@@ -1,11 +1,7 @@
 <?php
-
-
-if (!session_start()){
-    session_start();
-    }
-    
-
+    if (!session_start()){
+        session_start();
+        }  
 ?>
 
 <table class="table table-striped table-bordered table-hover " id="dataTables-items">
@@ -22,7 +18,7 @@ if (!session_start()){
         //          FROM `stock` 
         //          WHERE `item_number` = 'EL-CM-0000' 
         //          ORDER BY `stock_id`
-        $itemNumber = 'EL-CM-0000';
+        //$itemNumber = 'EL-CM-0000';
         
         $query ="SELECT transaction_id,
                         item_number,
@@ -59,17 +55,7 @@ if (!session_start()){
 
             // mysqli_fetch_array will return a row of data from the query
             // until no further data is available
-            /*
-            transaction_id,
-                        item_number,
-                        user_id,
-                        quantity_received,
-                        quantity_release,
-                        balance_stock,
-                        balance_available,
-                        date_process
-                        
-            */
+
             while($row = mysqli_fetch_array($response)){
 
                 echo '<tr class="center "><td>' .

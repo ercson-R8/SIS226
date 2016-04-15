@@ -1,9 +1,9 @@
 <?php
 
-if (!session_start()){
-    session_start();
-    }
-error_reporting(0);
+    if (!session_start()){
+        session_start();
+        }
+    error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,8 +65,9 @@ error_reporting(0);
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading" id="item_name">
-                            <br/>
-                             <!-- Item Name (item number) to be displayed here -->
+                            <h3><span id="itemName">Item Name</span></h3>
+                            <h5><span id="itemNumber">Item Number</span></h5>
+                            <!-- Item Name (item number) to be displayed here -->
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -120,14 +121,58 @@ error_reporting(0);
 
     <script>
     
-    // Initialising DataTables
-    $(document).ready(function() {
-        $('#dataTables-items').DataTable({
-                responsive: true
+        // Initialising DataTables
+        $(document).ready(function() {
+            $('#dataTables-items').DataTable({
+                    responsive: true
+            });
         });
-    });
     </script>
     
+
+
+<?php 
+
+    /*
+    * fetch the data and by searching the table
+    * pass the data to the script below to populate the span ids...
+    */
+    function queryDb( $table, $field, $key, $extra=""){
+        require('mysqli_connect.php');
+        $query ="SELECT * FROM ".$table." WHERE ".$field."=\"$key\" ".$extra;
+        $response = @mysqli_query($dbc, $query);
+        return (mysqli_fetch_array($response));
+        
+    }
+    $i = ( $_GET['i'] ); // old item_number
+    //$i = 'EL-CM-0000'; // for testing purpose only. to be removed later.
+    $currentUserID = 10011; // this should be replaced with the global session user id $_SESSION["userID"];
+    $data['itemNumber'] = $i;
+
+
+    $row = queryDb('item', 'item_number',$i);// use to fetch the item info
+    $data['itemName']           = $row['name']; 
+    $data['description']        = $row['description']; 
+    $data['supplier']           = $row['supplier'];
+    
+     
+    mysqli_close($dbc);
+?>
+
+
+
+    <script>
+        var data = <?php echo json_encode($data); ?>;
+        // populate the span ids...
+        {
+            document.getElementById("itemName").innerHTML = data['itemName'];
+            document.getElementById("itemNumber").innerHTML = data['itemNumber'];
+
+            
+        }
+        
+    </script>
+
 
 </body>
 

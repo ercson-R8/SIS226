@@ -193,8 +193,6 @@
                                         
                                     </form>
                             <!-- Stock Receive Form -->
-                            
-                            
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -240,7 +238,7 @@
         
     }
     $i = ( $_GET['i'] ); // old item_number
-    $i = 'EL-CM-0000'; // for testing purpose only. to be removed later.
+    //$i = 'EL-CM-0000'; // for testing purpose only. to be removed later.
     $currentUserID = 2; // for testing purpose only. to be removed later, this should be a session var userID
     $data[itemNumber] = $i;
     $extra = "ORDER BY stock_id DESC LIMIT 1";
@@ -277,7 +275,9 @@
         $data['status']="";
     }            
     mysqli_close($dbc);
-   ?>
+?>
+
+
 
     <script>
         var data = <?php echo json_encode($data); ?>;
@@ -314,3 +314,8 @@
     </script>
     <script type="text/javascript" src="js/sha512.js"></script> 
     <script type="text/javascript" src="js/forms.js"></script> 
+    
+    
+</body>
+
+</html>
