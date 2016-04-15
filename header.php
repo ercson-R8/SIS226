@@ -192,7 +192,7 @@
                                     <a href="stocks_issue.php"><i class="fa fa-key fa-fw"></i>Issue Stocks</a>
                                 </li>
                                 <li>
-                                    <a href="stocks_receive.php"><i class="fa fa-truck fa-fw"></i>Receive Stocks</a>
+                                    <a href="stocks_receive_search.php"><i class="fa fa-truck fa-fw"></i>Receive Stocks</a>
                                 </li>
                                 <li>
                                     <a href="stocks_view.php"><i class="fa fa-search fa-fw"></i>Search/View Stocks</a>
@@ -211,5 +211,5 @@
         </nav>
         <!-- End Navigation-->
 
-        <div id="page-wrapper">
+
             

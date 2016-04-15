@@ -1,21 +1,16 @@
-<?php 
-
-    // This form will call on stocks_get_balance.php passing the item_number as paramater
-    // the stocks_get_balance.php will return the following: 
-?>
-
 <?php
-/*
-* this page will be called by pages like item_view.php etc.. passing item number in parameter "i"
-* this page will call on item_number_verify.php to check if the new item number supplied does not exist yet
-* lastly it will pass the data array to edit.php to update the changes made.
-*
-*/
 
-if (!session_start()){
-    session_start();
-    }
-error_reporting(0);
+
+    /*
+    * This page will be called by stocks_receive_search.php passing the i paramater (item no.)
+    * This form will call on stocks_get_balance.php passing the item_number as paramater
+    * the stocks_get_balance.php will return the following
+    */
+
+    if (!session_start()){
+        session_start();
+        }
+    error_reporting(0);
 
 
 ?>
@@ -52,8 +47,7 @@ error_reporting(0);
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <script type="text/javascript" src="js/sha512.js"></script> 
-    <script type="text/javascript" src="js/forms.js"></script> 
+
 </head>
 
 <body>
@@ -284,7 +278,7 @@ error_reporting(0);
     }            
     mysqli_close($dbc);
    ?>
-   
+
     <script>
         var data = <?php echo json_encode($data); ?>;
         // populate the span ids...
@@ -318,3 +312,5 @@ error_reporting(0);
             
         }
     </script>
+    <script type="text/javascript" src="js/sha512.js"></script> 
+    <script type="text/javascript" src="js/forms.js"></script> 
