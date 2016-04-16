@@ -154,7 +154,7 @@
                             <!-- /.row (nested) -->
                             
                             <hr>
-                                <form action="stocks_request_update.php" name="stocksReceive" id="stocksReceive"  onsubmit="return verifyInputs();"method="post">
+                                <form action="stocks_request_update.php" name="stocksRequest" id="stocksRequest"  onsubmit="return verifyInputs();"method="post">
                                         <div class="row">
                                             <div class="col-lg-1">
                                             </div>
@@ -163,6 +163,7 @@
                                                         <input class="form-control" name="quantity" placeholder="Quantity" 
                                                         pattern="^[0-9]+$"
                                                         title="Number is required here."
+                                                        autofocus
                                                         required>
                                                         <input type="hidden" name ="userID" class="form-control">
                                                         <input type="hidden" name ="itemNumber" class="form-control">
@@ -171,17 +172,31 @@
                                                 </div>
                                                 <div class="form-group">
                                                         <textarea class="form-control" 
-                                                            name="remarks_store_manager" 
-                                                            id="remarks_store_manager" value="Remarks" placeholder= "Remarks" rows="4" >
+                                                            name="remarks_user_authorizer" 
+                                                            id="remarks_user_authorizer" value="Remarks" placeholder= "Remarks" rows="4" >
                                                         </textarea>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-5">
                                                 <div class="form-group">
-                                                    <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="" required>    
+                                                    <select class="form-control" name="authorizer">
+                                                            <option value="">Department Head</option>
+                                                    <?php
+                                                        require_once('mysqli_connect.php');     
+                                                        $query ="SELECT * FROM user WHERE rights=\"3\"";
+                                                        $response = @mysqli_query($dbc, $query);
+                                                        while($row = mysqli_fetch_array($response)){
+                                                            echo'<option value="'.$row['user_id'].'">'. 
+                                                            $row['first_name'].' '.$row['last_name'].'</option>';
+                                                        }
+                                                        mysqli_close($dbc);
+                                                    ?>
+                                                    </select>
+                                                    
+                                                    
                                                 </div>
-                                                <button type="submit" name="btnStocksReceive" class="btn btn-primary btn-lg btn-block"  >
+                                                <button type="submit" name="btnstocksRequest" class="btn btn-primary btn-lg btn-block"  >
                                                     Confirm
                                                 </button>
                                                 <a href="index.php" id="cancel" class="btn btn-warning btn-lg btn-block">Cancel </a>
@@ -238,7 +253,7 @@
     }
     $i = ( $_GET['i'] ); // old item_number
     //$i = 'EL-CM-0000'; // for testing purpose only. to be removed later.
-    $currentUserID = 2; // for testing purpose only. to be removed later, this should be a session var userID
+    $currentUserID = 101; // for testing purpose only. to be removed later, this should be a session var userID
     $data[itemNumber] = $i;
     $extra = "ORDER BY stock_id DESC LIMIT 1";
     $row = queryDb( 'stock', 'item_number',$i, $extra); // fetch the all data from the given table
@@ -280,7 +295,7 @@
 
     <script>
         var data = <?php echo json_encode($data); ?>;
-        // populate the span ids...
+        // populate the span ids and hidden inputs...
         {
             document.getElementById("stockBal").innerHTML = data['balance_stock'];
             document.getElementById("availBal").innerHTML = data['balance_available'];
@@ -290,44 +305,33 @@
             document.getElementById("supplier").innerHTML = data['supplier'];
             document.getElementById("stockUpdateStatus").innerHTML = data['status'];
             
-            document.forms["stocksReceive"]["userID"].value = data['userID'];
-            document.forms["stocksReceive"]["remarks_store_manager"].value = "";
-            document.forms["stocksReceive"]["stockBal"].value = data['balance_stock'];
-            document.forms["stocksReceive"]["availBal"].value = data['balance_available'];
-            document.forms["stocksReceive"]["itemNumber"].value = data['itemNumber'];
+            document.forms["stocksRequest"]["userID"].value = data['userID'];
+            document.forms["stocksRequest"]["remarks_user_authorizer"].value = "";
+            document.forms["stocksRequest"]["stockBal"].value = data['balance_stock'];
+            document.forms["stocksRequest"]["availBal"].value = data['balance_available'];
+            document.forms["stocksRequest"]["itemNumber"].value = data['itemNumber'];
             
         }
         
         function verifyInputs(){
-            quantity = parseInt(document.forms["stocksReceive"]["quantity"].value,10);
-            availBal = parseInt(document.forms["stocksReceive"]["availBal"].value,10);
+            quantity = parseInt(document.forms["stocksRequest"]["quantity"].value,10);
+            availBal = parseInt(document.getElementById("availBal").innerHTML,10);
+            authorizer = document.forms["stocksRequest"]["authorizer"].value;
             if (quantity <= availBal){
-                return hashPassword();
+                if(authorizer != ''){
+                    return true;
+                }else{
+                    alert('Please select your head of department');
+                    return false;
+                }
             }else {
                 alert('There is not enough stocks for this request!');
                 return false;
             }
             
-        }
-        
-        
-        function hashPassword(){
+        }       
+         
             
-            password = document.forms["stocksReceive"]["password"].value;
-            
-            
-           
-            
-            if (password != ""){
-                password = hex_sha512(password);
-                document.forms["stocksReceive"]["password"].value = password;
-                return true;
-            }
-            
-            //alert(hashedPW);
-            
-            
-        }
     </script>
     <script type="text/javascript" src="js/sha512.js"></script> 
     <script type="text/javascript" src="js/forms.js"></script> 

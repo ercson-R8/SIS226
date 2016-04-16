@@ -37,7 +37,7 @@
                 /* once site is live the line below will be used
                 $data['userID'] = $_SESSION["userID"];
                 */
-                $data['userID'] = 10011;
+                $data['userID'] = 101;
                 $data['suppliedPassword'] = strip_tags($_POST['password']);
                 $data['remarks_store_manager'] = strip_tags($_POST['remarks_store_manager']);
                 $data['itemNumber'] = strip_tags($_POST['itemNumber']);

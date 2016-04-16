@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2016 at 04:06 PM
+-- Generation Time: Apr 16, 2016 at 05:17 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sis226`
+-- Database: `sis`
 --
 
 -- --------------------------------------------------------
@@ -76,15 +76,15 @@ CREATE TABLE `stock` (
 CREATE TABLE `transaction` (
   `transaction_id` int(11) NOT NULL,
   `transaction_type` enum('add','sub') NOT NULL COMMENT 'On add, store manager will also be the authorizer',
-  `authorizer` int(3) NOT NULL COMMENT 'User with level 3 rights, to be completed during authorization of request for item/s',
-  `requester` int(3) NOT NULL,
+  `authorizer` int(3) DEFAULT NULL COMMENT 'User with level 3 rights, to be completed during authorization of request for item/s',
+  `requester` int(3) DEFAULT NULL,
   `date_requested` date DEFAULT NULL,
   `item_number` varchar(10) NOT NULL,
   `quantity` int(11) NOT NULL,
   `status` enum('Approved','Denied','Pending','Issued') NOT NULL,
   `remarks_authorizer` varchar(100) DEFAULT NULL,
-  `date_release` date DEFAULT NULL,
-  `store_manager` int(3) NOT NULL COMMENT 'User with level 2 rights, to be completed during issuance of the item',
+  `date_release` datetime DEFAULT NULL,
+  `store_manager` int(3) DEFAULT NULL COMMENT 'User with level 2 rights, to be completed during issuance of the item',
   `remarks_store_manager` varchar(100) NOT NULL,
   `date_authorized` date DEFAULT NULL,
   `date_add` date DEFAULT NULL
@@ -111,10 +111,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `first_name`, `middle_name`, `last_name`, `username`, `password`, `rights`) VALUES
-(10011, 'Jane', NULL, 'Doe', 'jane@doe.com', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '2'),
-(10012, 'John', NULL, 'Doe', 'john@doe.com', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '3'),
-(10013, 'Jim', NULL, 'Doe', 'jim@doe.com', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '4'),
-(10014, 'Jena', NULL, 'Doe', 'jena@doe.com', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '1');
+(100, 'Jane', NULL, 'Doe', 'jane@doe.com', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '2'),
+(101, 'John', NULL, 'Doe', 'john@doe.com', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '3'),
+(102, 'Jim', NULL, 'Doe', 'jim@doe.com', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '4'),
+(103, 'Jena', NULL, 'Doe', 'jena@doe.com', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '1'),
+(104, 'Jimmy', NULL, 'Doe', 'jimmy@doe.com', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '3'),
+(105, 'Jenny', NULL, 'Doe', 'jenny@doe.com', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '3');
 
 --
 -- Indexes for dumped tables
@@ -173,17 +175,17 @@ ALTER TABLE `log`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10015;
+  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 --
 -- Constraints for dumped tables
 --

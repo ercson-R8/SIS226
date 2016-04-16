@@ -239,7 +239,7 @@
     }
     $i = ( $_GET['i'] ); // old item_number
     //$i = 'EL-CM-0000'; // for testing purpose only. to be removed later.
-    $currentUserID = 10011; // this should be replaced with the global session user id $_SESSION["userID"];
+    $currentUserID = 101; // this should be replaced with the global session user id $_SESSION["userID"];
     $data[itemNumber] = $i;
     $extra = "ORDER BY stock_id DESC LIMIT 1";
     $row = queryDb( 'stock', 'item_number',$i, $extra); // fetch the all data from the given table

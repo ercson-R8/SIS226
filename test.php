@@ -18,5 +18,16 @@ echo '<!DOCTYPE html>
         </body>
         </html>';
 
+/*
+
+item history must also display request quantity
+stocks view must also display total receive, requested, released
+
+$sql = "INSERT INTO `stock` (`stock_id`, `transaction_id`, `item_number`, `user_id`, `quantity_received`, `quantity_release`, `balance_stock`, `balance_available`, `date_process`) VALUES (NULL, \'30\', \'EL-CM-0000\', \'10010\', \'0\', \'0\', \'0\', \'0\', CURRENT_TIMESTAMP)";
+
+CURRENT_TIMESTAMP()
+
+*/
+
 
 ?>
