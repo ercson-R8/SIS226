@@ -7,7 +7,6 @@
             <div class="col-lg-12">
                 <h1 class="page-header">View/Search Users</h1>
             </div><!-- /.col-lg-12 -->
-
         </div><!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
@@ -17,46 +16,21 @@
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <div class="dataTable_wrapper">
-                            <table class="table table-striped table-bordered table-hover" id="userTable">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Last Name</th>
-                                        <th>First Name</th>
-                                        <th>Middle Name</th>
-                                        <th>E-mail Address / Username</th>
-                                        <th>Role</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                   <?php require_once('user_get_list.php'); ?>
-
-                                </tbody>
-                            </table>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form>
+                                    <input type="search" name="search" id="search" placeholder="Search by Surname" class="form-control input-md">
+                                    <div id="here"></div>
+                                </form>
+                            </div>
                         </div>
-                        <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-                <!-- /.panel -->
-
-            </div>
-
-    </div>
-    <!-- /#page-wrapper -->
-
-
-</div>
-<!-- /#wrapper -->
-
-<script>
-    $(document).ready(function() {
-        $('userTable').DataTable({
-                responsive: true,
-                columnDefs: [{ "orderable": false, "targets": 0 }]
-        });
-    });
-</script>
-
-<?php include('footer.php'); ?>   
+                        <div class="dataTable_wrapper">
+                           <?php  require_once('user_get_list.php'); ?>
+                        </div><!-- /.table-responsive -->
+                    </div><!-- /.panel-body -->
+                </div><!-- /.panel -->
+            </div><!-- /.col-lg-12 -->
+    </div><!-- /#page-wrapper -->
+</div><!-- /#page-wrapper -->
+<?php include('footer.php'); ?>
+<script type="text/javascript" src="js/user.js"></script>
