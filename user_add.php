@@ -1,11 +1,20 @@
-<?php include('header.php'); ?>
+<?php 
+
+	include('header.php');
+	require_once('mysqli_connect.php');
+
+?>
 	<div id="page-wrapper">
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Add Users</h1>
 			</div><!-- /.col-lg-12 -->
-
 		</div><!-- /.row -->
+		<div class="row">
+			<div class="col-lg-12">
+				<?php require_once('user.control.php'); ?>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="panel panel-info">
@@ -15,7 +24,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form action="" method="post" role="form">
+								<form id="user-add" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" role="form">
 									<div class="form-group">
 										<label>
 											First Name
@@ -39,7 +48,7 @@
 											E-mail Address
 											<span class="asteriskField">*</span>
 										</label>
-										<input type="text" name="username" class="form-control" >
+										<input type="text" name="email" class="form-control" >
 										<p class="help-block">E-mail address will be used as your username.</p>
 									</div>
 									<div class="form-group">
@@ -47,26 +56,20 @@
 											Password
 											<span class="asteriskField">*</span>
 										</label>
-										<input type="password" name="username" class="form-control" >
+										<input type="password" name="password" class="form-control" >
 									</div>
 									<div class="form-group">
 										<label>Role</label>
 										<select name="user_role" class="form-control">
-											<option value="30">Staff</option>
-											<option value="20">Department Head</option>
-											<option value="10">Administrator</option>
-											<option value="0">Master Admin</option>
+											<option value="1" selected >Staff</option>
+											<option value="2">Department Head</option>
+											<option value="3">Administrator</option>
+											<option value="4">Master Admin</option>
 										</select>
-									</div>
-									<div class="form-group">
-										<label>Active</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="user_active">&nbsp;
-										</label>
 									</div>
 									<div class="row">
 										<div class="col-lg-4 col-lg-offset-8">
-											<button type="submit" name="user_save" class="btn btn-primary btn-block">Save</button>
+											<button type="submit" name="save" class="btn btn-primary btn-block">Save</button>
 										</div>
 									</div>
 
