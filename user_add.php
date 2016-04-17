@@ -64,7 +64,7 @@
 											<option value="1" selected >Staff</option>
 											<option value="2">Department Head</option>
 											<option value="3">Administrator</option>
-											<option value="4">Master Admin</option>
+											<option value="4">Master Administrator</option>
 										</select>
 									</div>
 									<div class="row">
@@ -80,44 +80,7 @@
 			</div><!-- /.panel panel-default-->
 			</div>
 
-			<div class="col-lg-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						User List
-					</div>
-					<!-- /.panel-heading -->
-					<div class="panel-body">
-						<div class="table-responsive">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th></th>
-										<th>First Name</th>
-										<th>Last Name</th>
-										<th>Username</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<a href="user_edit.php">
-												<span class="fa fa-edit"></span>
-											</a>
-										</td>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<!-- /.table-responsive -->
-					</div>
-					<!-- /.panel-body -->
-				</div>
-				<!-- /.panel -->
-			</div>
-			<!-- /.col-lg-6 -->
+			
 		</div>
 		<!-- /.row -->
 	</div>
