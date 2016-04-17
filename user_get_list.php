@@ -40,9 +40,7 @@
 		            <a href="user_edit.php?action=edit<?php echo $params; ?>" class="btn btn-xs btn-primary">
 		                <span class="fa fa-edit"></span>
 		            </a>
-		            <a href="user_delete.php" id="<?php echo $row['user_id']; ?>" class="btn btn-xs btn-danger">
-		                <span class="fa fa-times-circle-o"></span>
-		            </a>
+		          	<?php include('user_delete_modal.php'); ?>
 		        </td>
 		       
 		        <td><?php echo $row['last_name'] ?></td>
@@ -51,7 +49,9 @@
 		        <td><?php echo $row['username']; ?></td>
 		        <td><?php echo get_role($row['rights']); ?></td>
 		    </tr>
-		    <?php }	?>
+		    <?php }
+				mysqli_close($dbc);
+			?>
 			</tbody>
 		</table>	
 	</div>
