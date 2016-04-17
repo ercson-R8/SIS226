@@ -1,6 +1,7 @@
-<?php include('header.php'); ?>
+<?php 
+    include('header.php');
 
-
+?>
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -17,45 +18,19 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
-                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table class="table table-striped table-bordered table-hover" id="userTable">
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>First Name</th>
                                         <th>Last Name</th>
-                                        <th>E-mail Address</th>
-                                        <th>Active</th>
+                                        <th>First Name</th>
+                                        <th>Middle Name</th>
+                                        <th>E-mail Address / Username</th>
+                                        <th>Role</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="odd gradeX">
-                                        <td>
-                                            <a href="user_edit.php" class="btn btn-xs btn-primary">
-                                                <span class="fa fa-edit"></span>
-                                            </a>
-                                            <a href="user_delete.php" class="btn btn-xs btn-danger">
-                                                <span class="fa fa-times-circle-o"></span>
-                                            </a>
-                                        </td>
-                                        <td>Internet Explorer 4.0</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">4</td>
-                                        <td class="center">X</td>
-                                    </tr>
-                                    <tr class="odd gradeX">
-                                        <td>
-                                            <a href="user_edit.php" class="btn btn-xs btn-primary">
-                                                <span class="fa fa-edit"></span>
-                                            </a>
-                                            <a href="user_delete.php" class="btn btn-xs btn-danger">
-                                                <span class="fa fa-times-circle-o"></span>
-                                            </a>
-                                        </td>
-                                        <td>Gecko</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">4</td>
-                                        <td class="center">X</td>
-                                    </tr>
+                                   <?php require_once('user_get_list.php'); ?>
 
                                 </tbody>
                             </table>
@@ -77,7 +52,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#dataTables-example').DataTable({
+        $('userTable').DataTable({
                 responsive: true,
                 columnDefs: [{ "orderable": false, "targets": 0 }]
         });

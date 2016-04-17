@@ -1,4 +1,5 @@
 <?php
+
 	$firstname = isset($_POST['first_name']) ? $_POST['first_name'] : '';
 	$middlename = isset($_POST['middle_name']) ? $_POST['middle_name'] : '';
 	$lastname = isset($_POST['last_name']) ? $_POST['last_name'] : '';
@@ -8,7 +9,6 @@
 	/*
 	 * Enrypt password using salt and md5
 	 */
-	
 	$salt = uniqid(mt_rand(), true);
 	$password = isset($_POST['email']) ? $_POST['password'] : '';
 	$hashedpw = md5( $salt.$password);
@@ -39,4 +39,28 @@
 			}
 		}
 		mysqli_close($dbc);
-	}		
+	}//save
+
+	/*
+	 * Return role value
+	 */
+	function get_role( $role_id ){
+		switch ( $role_id ) {
+			case '4':
+				return "Master Administrator";
+				break;
+
+			case '3':
+				return "Administrator";
+				break;
+
+			case '2':
+				return "Department Head";
+				break;
+			
+			default:
+				return "Staff";
+				break;
+		}
+
+	}
