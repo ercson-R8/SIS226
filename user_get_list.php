@@ -34,11 +34,6 @@
 		    <?php 
 		     	while ( $row = $result->fetch_assoc()) {
 				$params = '&amp;id=' . $row['user_id'];
-				// $params .= '&amp;lname=' . $row['last_name'];
-				// $params .= '&amp;fname=' . $row['first_name'];
-				// $params .= '&amp;mname=' . $row['middle_name'];
-				// $params .= '&amp;email=' . $row['username'];
-				// $params .= '&amp;role=' . $row['rights'];
 			?>
 
 	      	<tr class="odd gradeX">
