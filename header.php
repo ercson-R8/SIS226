@@ -159,9 +159,6 @@
                                     <a href="user_add.php">Add Users</a>
                                 </li>
                                 <li>
-                                    <a href="user_edit.php">Edit Users</a>
-                                </li>
-                                 <li>
                                     <a href="user_view.php">View/Search Users</a>
                                 </li>
                             </ul>
