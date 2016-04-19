@@ -2,9 +2,6 @@
 	session_start();
     require_once( 'mysqli_connect.php' );
 
-    error_reporting(E_ALL);
-	ini_set('display_errors', '1');
-
     $errormsg = "";
 
     if (isset($_POST['login-submit'])) {
