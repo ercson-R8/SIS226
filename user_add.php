@@ -1,8 +1,6 @@
 <?php 
-
-	include('header.php');
+	require_once('header.php');
 	require_once('mysqli_connect.php');
-
 ?>
 	<div id="page-wrapper">
 		<div class="row">

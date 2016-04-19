@@ -1,3 +1,6 @@
+<?php 
+	require_once('login.control.php');
+?>
 <!DOCTYPE <html>
 <head>
 	<title>Simplified Inventory System</title>
@@ -74,6 +77,11 @@
 							</div>
 						</div>
 					</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<?php echo $errormsg; ?>
+							</div>
+						</div>
 				</div>
 			</div>
 		</div>

@@ -9,9 +9,9 @@
 	/*
 	 * Enrypt password using salt and md5
 	 */
-	$salt = uniqid(mt_rand(), true);
-	$password = isset($_POST['email']) ? $_POST['password'] : '';
-	$hashedpw = md5( $salt.$password);
+	// $salt = uniqid(mt_rand(), true);
+	$password = isset($_POST['password']) ? $_POST['password'] : '';
+	$hashedpw = md5($password);
 
 	/*
 	 * Save User Record

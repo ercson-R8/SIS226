@@ -1,6 +1,5 @@
 <?php 
-    include('header.php');
-
+    require_once('header.php');
 ?>
     <div id="page-wrapper">
         <div class="row">
