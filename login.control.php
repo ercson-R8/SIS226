@@ -87,4 +87,46 @@
 		mysqli_close($dbc);
     }
 
+    /*
+     * Reset Pssword
+     */
+    
+    if ( $_POST['reset-submit']) {
+    	$username = isset($_POST['email']) ? $_POST['email'] : '';
+		$password = generate_password(8);
+		$hashedpw = md5($password);
+
+		if ( empty( $username)) {
+			$errormsg =  '<div class="alert alert-danger" role="alert">E-mail is required.</div>';
+		}else{
+			$sql_update = "UPDATE user SET password = '$hashedpw' WHERE username = '$username' ";
+			if (mysqli_query($dbc, $sql_update)) {
+				$result = @mysqli_query($dbc, $sql_query);
+	    		$errormsg = '<div class="alert alert-success" role="alert">New password has been sent to your email.</div>';
+	    		echo $password;
+	    		//Send generated password to email
+	    		$to = $username;
+				$subject = "Do not reply: Password Reset";
+				$msg = "Your new password is: ". $password;
+				$headers = "From: sis226@gmailcom" . "\r\n";
+
+				mail($to,$subject,$msg,$headers);
+
+			} else {
+				$errormsg = '<div class="alert alert-danger" role="alert">Error updating record: ' . mysqli_error($dbc) . '</div>';
+			}
+
+			mysqli_close($dbc);
+		}
+    }
+
+    /*
+     * Generate Password
+     */
+    function generate_password( $length = 8 ) {
+	    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+	    $password = substr( str_shuffle( $chars ), 0, $length );
+	    return $password;
+	}
+
 ?>
