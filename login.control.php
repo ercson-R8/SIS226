@@ -25,7 +25,7 @@
 			$password = md5($password);
 
 			//Check if there is matching username and password in user table
-			$sql_query = "SELECT user_id FROM user WHERE username = '$username' and password = '$password'";
+			$sql_query = "SELECT * FROM user WHERE username = '$username' and password = '$password'";
 			$result =  @mysqli_query($dbc, $sql_query);
 
 			$row = mysqli_fetch_array($result,MYSQLI_ASSOC); 
@@ -34,6 +34,8 @@
 			
     		if ( $result->num_rows == 1) {
     			$_SESSION['id'] = $username;
+				$_SESSION['rights'] = $row['rights'];
+				$_SESSION['user_id'] = $row['user_id'];
     			header( "Location: user_view.php" );
     		}else{
 				$errormsg = '<div class="alert alert-danger" role="alert">Please check if you enter the correct username and password.</div>';

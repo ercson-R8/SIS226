@@ -35,6 +35,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
+
 </head>
 <body>
     <div id="wrapper">
@@ -177,7 +179,7 @@
                              <a href="#"><i class="fa fa-archive fa-fw"></i> Stocks<span class="fa arrow"></span></a>
                              <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="stocks_request.php" ><i class="fa fa-shopping-cart fa-fw"></i>Request Stocks</a>
+                                    <a href="stocks_request_search.php" ><i class="fa fa-shopping-cart fa-fw"></i>Request Stocks</a>
                                 </li>
                                 <li>
                                     <a href="stocks_authorize.php"><i class="fa fa-legal fa-fw"></i>Authorize Stocks Req.</a>

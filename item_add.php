@@ -2,7 +2,7 @@
 
 if (!session_start()){
     session_start();
-    }
+}
 
 if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
 	if(isset($_POST['submit'])){       // if(isset($_POST['submit'])){         // && !($_SESSION["isSessionDone"]) ){
@@ -53,15 +53,15 @@ if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
                 // transaction_id	= this is AI
                 $transaction_type= 'add';
                 
-                $authorizer= 101; // this should be replaced with the global session user id $_SESSION["userID"];
-                $requester= 101; // this should be replaced with the global session user id $_SESSION["userID"];
+                $authorizer= $_SESSION['user_id']; // this should be replaced with the global session user id $_SESSION["userID"];
+                $requester= $_SESSION['user_id']; // this should be replaced with the global session user id $_SESSION["userID"];
                 //date_requested= this is auto NULL
                 // $item_number= will be taken from the recently created item, from the code above.
                 $quantity	= 0;
                 $status	= 'Approved';
                 $remarks_authorizer	= 'Authorizer not required.';
                 // date_release	= this is auto NULL
-                $store_manager	= 101; // this should be replaced with the global session user id $_SESSION["userID"];
+                $store_manager	= $_SESSION['user_id']; // this should be replaced with the global session user id $_SESSION["userID"];
                 $remarks_store_manager	= 'Initial addition of an inventory item';
                 $date_authorized	= date("Y-m-d");
                 $date_add = date("Y-m-d");
@@ -80,7 +80,7 @@ if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
                 mysqli_stmt_execute($stmt);
                 $last_id = mysqli_insert_id($dbc);
                 $r = mysqli_stmt_affected_rows($stmt);
-                $r .=$last_id;
+                //$r .=$last_id;
                 //echo 'from inside<br/>';
                 
             } // end of transaction update 
@@ -129,7 +129,7 @@ if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
         }
     }
 
-    $s = "Location: item_add_form.php?s=". $op_status."&n=".$item_name." r= ".$r;
+    $s = "Location: item_add_form.php?s=". $op_status."&n=".$item_name;
     header($s);
     mysqli_stmt_close($stmt);
     mysqli_close($dbc);

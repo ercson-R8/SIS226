@@ -1,61 +1,7 @@
-<?php
-
-
-    /*
-    * This page will be called by stocks_request_search.php passing the i paramater (item no.)
-    * This form will call on stocks_get_balance.php passing the item_number as paramater
-    * the stocks_get_balance.php will return the following
-    */
-
-    if (!session_start()){
-        session_start();
-        }
-    error_reporting(0);
-
-
+<?php 
+	require_once('header.php');
+	require_once('mysqli_connect.php');
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Request Stocks</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
-
-</head>
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <?php require_once('nav.html'); ?>
         
         <div id="page-wrapper">
             <div class="row">
@@ -223,21 +169,6 @@
 
 
 
-
-<!-- jQuery -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="dist/js/sb-admin-2.js"></script>
-
-
-
 <?php 
 
     /*
@@ -293,50 +224,48 @@
 
 
 
-    <script>
-        var data = <?php echo json_encode($data); ?>;
-        // populate the span ids and hidden inputs...
-        {
-            document.getElementById("stockBal").innerHTML = data['balance_stock'];
-            document.getElementById("availBal").innerHTML = data['balance_available'];
-            document.getElementById("itemName").innerHTML = data['itemName'];
-            document.getElementById("description").innerHTML = data['description'];
-            document.getElementById("supplier").innerHTML = data['supplier'];
-            document.getElementById("supplier").innerHTML = data['supplier'];
-            document.getElementById("stockUpdateStatus").innerHTML = data['status'];
-            
-            document.forms["stocksRequest"]["userID"].value = data['userID'];
-            document.forms["stocksRequest"]["remarks_user_authorizer"].value = "";
-            document.forms["stocksRequest"]["stockBal"].value = data['balance_stock'];
-            document.forms["stocksRequest"]["availBal"].value = data['balance_available'];
-            document.forms["stocksRequest"]["itemNumber"].value = data['itemNumber'];
-            
-        }
+<script>
+    var data = <?php echo json_encode($data); ?>;
+    // populate the span ids and hidden inputs...
+    {
+        document.getElementById("stockBal").innerHTML = data['balance_stock'];
+        document.getElementById("availBal").innerHTML = data['balance_available'];
+        document.getElementById("itemName").innerHTML = data['itemName'];
+        document.getElementById("description").innerHTML = data['description'];
+        document.getElementById("supplier").innerHTML = data['supplier'];
+        document.getElementById("supplier").innerHTML = data['supplier'];
+        document.getElementById("stockUpdateStatus").innerHTML = data['status'];
         
-        function verifyInputs(){
-            quantity = parseInt(document.forms["stocksRequest"]["quantity"].value,10);
-            availBal = parseInt(document.getElementById("availBal").innerHTML,10);
-            authorizer = document.forms["stocksRequest"]["authorizer"].value;
-            if (quantity <= availBal){
-                if(authorizer != ''){
-                    return true;
-                }else{
-                    alert('Please select your head of department');
-                    return false;
-                }
-            }else {
-                alert('There is not enough stocks for this request!');
+        document.forms["stocksRequest"]["userID"].value = data['userID'];
+        document.forms["stocksRequest"]["remarks_user_authorizer"].value = "";
+        document.forms["stocksRequest"]["stockBal"].value = data['balance_stock'];
+        document.forms["stocksRequest"]["availBal"].value = data['balance_available'];
+        document.forms["stocksRequest"]["itemNumber"].value = data['itemNumber'];
+        
+    }
+    
+    function verifyInputs(){
+        quantity = parseInt(document.forms["stocksRequest"]["quantity"].value,10);
+        availBal = parseInt(document.getElementById("availBal").innerHTML,10);
+        authorizer = document.forms["stocksRequest"]["authorizer"].value;
+        if (quantity <= availBal){
+            if(authorizer != ''){
+                return true;
+            }else{
+                alert('Please select your head of department');
                 return false;
             }
-            
-        }       
-         
-            
-    </script>
-    <script type="text/javascript" src="js/sha512.js"></script> 
-    <script type="text/javascript" src="js/forms.js"></script> 
+        }else {
+            alert('There is not enough stocks for this request!');
+            return false;
+        }
+        
+    }       
+        
+        
+</script>
+<script type="text/javascript" src="js/sha512.js"></script> 
+<script type="text/javascript" src="js/forms.js"></script> 
     
-    
-</body>
+<?php include('footer.php'); ?>
 
-</html>
