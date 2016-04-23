@@ -4,10 +4,8 @@ if (!session_start()){
     session_start();
 }
 
-if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
-	if(isset($_POST['submit'])){       // if(isset($_POST['submit'])){         // && !($_SESSION["isSessionDone"]) ){
-        
-        
+if (true) {         
+	if(isset($_POST['submit'])){               
         
         $data 	 = $_POST['data'];
 	    foreach ($data as $key => $value) {
@@ -94,7 +92,7 @@ if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
                 $transaction_id = $last_id; // the recently created ID 
                 $item_number = $item_number;
                 // user id should also be save here
-                $user_id = 101; // this will be taken from the global session var $_SESSION["userID"];
+                $user_id = $_SESSION['user_id']; // this will be taken from the global session var $_SESSION["userID"];
                 
                 $quantity_received = 0;
                 $quantity_release = 0;
@@ -116,10 +114,7 @@ if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
                 $r = mysqli_stmt_affected_rows($stmt);
                 
             } // end of stock update 
-
             
-            
-                
         }else {//echo 'Error Occurred<br />';
             $error_msg = mysqli_error($dbc);
             mysqli_stmt_close($stmt);

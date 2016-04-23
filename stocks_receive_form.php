@@ -86,7 +86,7 @@
                                                         <i class="fa fa-comments fa-2x"></i>
                                                     </div>
                                                     <div class="col-xs-9 text-right">
-                                                        <div ><span id="description">Lorem ipsum dolor sit amet, </span></div>
+                                                        <div ><span id="description"></span></div>
                                                         <div>Description</div>
                                                     </div>
                                                 </div>
@@ -109,6 +109,7 @@
                                             <div class="col-lg-5">
                                                 <div class="form-group">
                                                         <input class="form-control" name="quantity" placeholder="Quantity" 
+                                                        value=""
                                                         pattern="^[0-9]+$"
                                                         title="Number is required here."
                                                         required>
@@ -127,12 +128,12 @@
 
                                             <div class="col-lg-5">
                                                 <div class="form-group">
-                                                    <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="" required>    
+                                                    <input class="form-control" placeholder="Password"  name="password" id="password" type="password" value="" required>    
                                                 </div>
-                                                <button type="submit" name="btnStocksReceive" class="btn btn-primary btn-lg btn-block"  >
+                                                <button type="submit" name="stocksReceiveConfirm" class="btn btn-primary btn-lg btn-block"  >
                                                     Confirm
                                                 </button>
-                                                <a href="index.php" id="cancel" class="btn btn-warning btn-lg btn-block">Cancel </a>
+                                                <a href="stocks_receive_search.php" id="cancel" class="btn btn-warning btn-lg btn-block">Cancel </a>
                                             </div>
                                             <div class="col-lg-1">
                                             </div>
@@ -172,7 +173,7 @@
     }
     $i = ( $_GET['i'] ); // old item_number
     //$i = 'EL-CM-0000'; // for testing purpose only. to be removed later.
-    $currentUserID = 101; // this should be replaced with the global session user id $_SESSION["userID"];
+    $currentUserID = $_SESSION['user_id']; // this should be replaced with the global session user id $_SESSION["userID"];
     $data[itemNumber] = $i;
     $extra = "ORDER BY stock_id DESC LIMIT 1";
     $row = queryDb( 'stock', 'item_number',$i, $extra); // fetch the all data from the given table
@@ -186,7 +187,7 @@
     $data['supplier']           = $row['supplier'];
     
     $row = queryDb('user', 'user_id',$currentUserID);// use to fetch the user info 
-    $data['password']           = $row['password'];
+    //$data['password']           = $row['password'];
     $data['rights']             = $row['rights'];
     $data['userID']             = $currentUserID;
     
@@ -235,13 +236,13 @@
     function hashPassword(){
         password = document.forms["stocksReceive"]["password"].value;
         if (password != ""){
-            password = hex_sha512(password);
+            alert(password);
+            //password = hex_sha512(password);
+            password = <?php echo'"'.md5(password).'"'; ?> ;
+            alert(password);
             document.forms["stocksReceive"]["password"].value = password;
             return true;
-        }
-        
-        //alert(hashedPW);
-        
+        }        
         
     }
 </script>
@@ -253,7 +254,6 @@
 
 <script>
     var rights = <?php echo json_encode($_SESSION['rights']); ?>;
-    alert(rights);
     $(document).ready(function(){
             if (rights != '3'){ // this feature is for Administrator/Store manager only.
                 alert('Not allowed to use this feature!');

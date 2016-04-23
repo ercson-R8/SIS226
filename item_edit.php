@@ -60,7 +60,7 @@ if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
             $data = '0<div class="alert alert-danger alert-dismissable fade in">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <div class="text-center"> The item <b>'.$itemName.'</b> was <b><u>NOT</u></b> updated successfully!</div>
-                    <div class="text-center">Verify the item number.</div>
+                    <div class="text-center">No changes were made. Item number might have previously been used.</div>
                 </div>';
         }
     }

@@ -129,8 +129,11 @@
     // would mean that contact info was properly stored/updated.
     $s=[];
     $n=[];
-    $s =  trim($_GET['s']);
-    $n =  trim($_GET['n']);
+   
+    if (isset($_GET)){
+        $s =  trim($_GET['s']);
+        $n =  trim($_GET['n']);
+    }
     if ($s=='1'){
     $data = ' 
         <div class="alert alert-success alert-dismissable fade in">
@@ -147,7 +150,7 @@
         </div>';
     }
     else{
-        echo'';
+        $data = '';
     }
 ?>
 <script>
@@ -157,5 +160,14 @@
     
 <?php include('footer.php'); ?>
 
-
+<!-- verify if current user is allowed to use this feature -->
+<script>
+    var data = <?php echo json_encode($_SESSION['rights']); ?>;
+    $(document).ready(function(){
+        if (data != '3'){ // level 3 is required to perform this feature
+            alert('You are not allowed to use this feature!');
+            window.location.assign("item_view.php");
+        }
+    });
+</script>
 

@@ -7,6 +7,10 @@
     $data['id'] =  $_SESSION['id'];
     $data['right'] = $_SESSION['rights'];
     echo var_dump($_SESSION);
+    echo '<Br/>';
+    if (isset($_GET)){
+        echo var_dump($_GET);
+    }
     
 
 
@@ -23,7 +27,7 @@
         $(document).ready(function(){
             if (data != '3'){
                 alert('Not allowed to use this feature!');
-                window.location.assign("landing.php");
+                //window.location.assign("landing.php");
             }
         });
     </script>

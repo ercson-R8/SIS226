@@ -11,7 +11,7 @@
 
 
         <div id="page-wrapper">
-           <?php echo var_dump($GLOBALS); ?>
+           <?php //echo var_dump($GLOBALS); ?>
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header" id="item_name">Receive Stocks</h1>
@@ -58,6 +58,11 @@
 
     // Initialising DataTables
     $(document).ready(function() {
+        var rights = <?php echo json_encode($_SESSION['rights']); ?>;
+        if (rights != '3'){ // this feature is for Administrator/Store manager only.
+            alert('You are not allowed to use this feature!');
+            window.location.assign("stocks_view.php");
+        }
         $('#dataTables-items').DataTable({
                 responsive: true
         });

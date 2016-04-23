@@ -98,7 +98,7 @@
                                             
                                             </div>
                                             <div class="col-lg-6">
-                                                <a href="index.php" id="cancel" class="btn btn-warning btn-lg btn-block">Cancel </a>
+                                                <a href="item_view.php" id="cancel" class="btn btn-warning btn-lg btn-block">Cancel </a>
                                             </div>
                                         
                                         </div>
@@ -179,7 +179,6 @@
     $("#item_edit").submit(function(event){
         
        {
-           alert('jquery was executed');
             // Abort any pending request
             if (request) {
                 request.abort();
@@ -214,7 +213,7 @@
                 console.log("Hooray, it worked!"+status+" -"+(response).substr(1));
                 
                 document.getElementById("itemEditStatus").innerHTML = response.substr(3);
-                alert (status.substr(2,1)== '1');
+                //alert (status.substr(2,1)== '1');
                 if (status.substr(2,1)=='1') {
                     $inputs.prop("disabled", true);
                     document.getElementById("cancel").innerHTML = "Home";
@@ -248,3 +247,13 @@
      
 </script>
     
+<!-- verify if current user is allowed to use this feature -->
+<script>
+    var data = <?php echo json_encode($_SESSION['rights']); ?>;
+    $(document).ready(function(){
+        if (data != '3'){ // level 3 is required to perform this feature
+            alert('You are not allowed to use this feature!');
+            window.location.assign("item_view.php");
+        }
+    });
+</script>

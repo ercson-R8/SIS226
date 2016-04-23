@@ -1,35 +1,13 @@
 <?php
 
-    // This module is exclusive for store manager users only. 
-    
-    /* search table $table, user the key $key on field $field
-    *  returns result in an array 
-    */
-
+    // This module is exclusive for store manager(3) users only. 
 
     if (!session_start()){
         session_start();
     }
-    //echo var_dump($GLOBALS);
-    /*
-        array(6) { 
-            ["_GET"]=> array(0) { } 
-            ["_POST"]=> array(4) { 
-                ["quantity"]=> string(1) "1" 
-                ["userID"]=> string(1) "2" 
-                ["password"]=> string(0) "" 
-                ["p"]=> string(128) "4976f7ec3db249fffefc9b7ecf43ed833b935cee548a589b1c5321e189ae049214ff7336d57
-                                    6f47c6714b81d0b5d413d23fa0c0cb7fcd064459cbdbd9750fadb" 
-                } 
-            ["_COOKIE"]=> array(1) { 
-                ["PHPSESSID"]=> string(26) "0mi4qln6unpvo0iarip86faou0" } 
-            ["_FILES"]=> array(0) { } 
-            ["GLOBALS"]=> *RECURSION* 
-            ["_SESSION"]=> &array(0) { } 
-        } 
-    */
+    echo var_dump($_POST);
 
-    if (true) {         // (strcmp( $_SESSION["session_rights"],"admin") == 0)
+    if (isset($_POST['stocksReceiveConfirm'])) {         
         if(true){
             // sanitize the date 
             if (true){  
@@ -37,7 +15,7 @@
                 /* once site is live the line below will be used
                 $data['userID'] = $_SESSION["userID"];
                 */
-                $data['userID'] = 101;
+                $data['userID'] = $_SESSION['user_id'];
                 $data['suppliedPassword'] = strip_tags($_POST['password']);
                 $data['remarks_store_manager'] = strip_tags($_POST['remarks_store_manager']);
                 $data['itemNumber'] = strip_tags($_POST['itemNumber']);
@@ -49,9 +27,12 @@
             $row = queryDb( 'user', 'user_id',$data['userID']); 
                 $data['password']      = $row['password'];
                 $data['rights']      = $row['rights'];
+            
+            echo "<br/>suppliedPassword=".$data['suppliedPassword'];
+            echo "<br/>password=".$data['password']; 
 
             // verify supplied with stored password
-            if (true){ // ( $data['password'] == $suppliedPassword) && ($data['rights']==2), for now assume it is true
+            if ($data['suppliedPassword']==$data['password']){ // ( $data['password'] == $suppliedPassword) 
                 // create an "add" transaction and then update the stocks table
                 if (true){
                     // transaction_id	= this is an AI
@@ -85,7 +66,7 @@
                     $r = mysqli_stmt_affected_rows($stmt);
 
                     echo"<br/>trxn: ".$r.' last id: '.$last_id;
-                }
+                } // end add transaction 
                 // update the stock table/card
                 if (true){
                     $transaction_id = $last_id; // the recently created ID 
@@ -116,22 +97,17 @@
                 mysqli_close($dbc);
                 //return s=t or status is success; parameters: item+status
                 $s = "Location: stocks_receive_form.php?i=".$data['itemNumber']."&s=".$r;
-                header($s);
+                //header($s);
                 exit;
             
             }else{
-                echo"<script>alert('Access is denied. Elevated clearance is required.');
+                echo"<script>alert('Update unsuccessful. Please check your password.');
                 </script>";
                 $s = "Location: item_add_form.php?i=". $data['itemNumber']."&s=".$r;
-                header($s);
+                //header($s);
                 exit;
-            }
-            
-            
-        }
-        
-        
-        
+            }            
+        }        
     }
     
     function queryDb( $table, $field, $key, $extra=""){
@@ -141,3 +117,7 @@
         return (mysqli_fetch_array($response));
         
     }
+    
+    
+    
+    
