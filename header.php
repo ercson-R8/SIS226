@@ -94,23 +94,15 @@
                             </div>
                         </li> -->
                         <!-- SIS Navigation List -->
-                        <li>
-                             <a href="#"><i class="fa fa-users fa-fw"></i> Users<span class="fa arrow"></span></a>
-                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="user_add.php">Add Users</a>
-                                </li>
-                                <li>
-                                    <a href="user_view.php">View/Search Users</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        
                         <li>
                              <a href="#"><i class="fa fa-list-alt fa-fw"></i> Items<span class="fa arrow"></span></a>
                              <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="item_add.php">Add Items</a>
+                                    <a href="item_request.php">Request for New Item</a>
+                                </li>
+                                <li>
+                                    <a href="item_add.php">Add New Items</a>
                                 </li>
                                 <li>
                                     <a href="item_view.php">View Items</a>
@@ -137,6 +129,18 @@
                                     <a href="stocks_view.php"><i class="fa fa-search fa-fw"></i>Search/View Stocks</a>
                                 </li>
 
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                             <a href="#"><i class="fa fa-users fa-fw"></i> Users<span class="fa arrow"></span></a>
+                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="user_add.php">Add Users</a>
+                                </li>
+                                <li>
+                                    <a href="user_view.php">View/Search Users</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
