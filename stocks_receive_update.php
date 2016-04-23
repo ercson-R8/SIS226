@@ -16,7 +16,7 @@
                 $data['userID'] = $_SESSION["userID"];
                 */
                 $data['userID'] = $_SESSION['user_id'];
-                $data['suppliedPassword'] = strip_tags($_POST['password']);
+                $data['suppliedPassword'] = md5(strip_tags($_POST['password']));
                 $data['remarks_store_manager'] = strip_tags($_POST['remarks_store_manager']);
                 $data['itemNumber'] = strip_tags($_POST['itemNumber']);
                 $data['balance_available'] = (int)strip_tags($_POST['availBal']);

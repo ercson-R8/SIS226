@@ -236,10 +236,10 @@
     function hashPassword(){
         password = document.forms["stocksReceive"]["password"].value;
         if (password != ""){
-            alert(password);
+            //alert(password);
             //password = hex_sha512(password);
-            password = <?php echo'"'.md5(password).'"'; ?> ;
-            alert(password);
+            //password = <?php //echo'"'.md5(password).'"'; ?> ;
+            //alert(password);
             document.forms["stocksReceive"]["password"].value = password;
             return true;
         }        
