@@ -9,7 +9,7 @@
 
 	$password = isset($_POST['password']) ? $_POST['password'] : '';
 	$hashedPassword = hashPassword( $password );
-	
+
 
 	/*
 	 * Save User Record
@@ -40,13 +40,13 @@
 	/*
 	 * Update User Profile
 	 */
+	if ( isset($_SESSION['username']) ) {
+		$query = "SELECT * FROM user WHERE username = '$username'";
+    	$result =  @mysqli_query($dbc, $query);
+	}
 	
 	if ( isset( $_POST['user_update'] ) ) 
 	{
-
-	    $query = "SELECT * FROM user WHERE username = '$username'";
-	    $result =  @mysqli_query($dbc, $query);
-		
 		$q_update = "UPDATE user SET first_name = '$firstname', middle_name = '$middlename', last_name = '$lastname', rights = '$user_role' WHERE username = '$username' ";
 		$result_q = mysqli_query($dbc, $q_update);
 
