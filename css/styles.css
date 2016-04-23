@@ -1,3 +1,8 @@
+body{
+	font-family: "Lato";
+	font-weight: 400;
+}
+
 /*
  * Buttons
  */
@@ -8,4 +13,13 @@
 	display: inline-block;
 	vertical-align: top;
 	width: auto;
+}
+
+/*
+ * Navigation
+ */
+
+ul li.dropdown > a{
+	text-transform: capitalize;
+	font-weight: 600;
 }
