@@ -1,4 +1,5 @@
 <?php
+	require_once('global_function.php');
 
 	$firstname = isset($_POST['first_name']) ? $_POST['first_name'] : '';
 	$middlename = isset($_POST['middle_name']) ? $_POST['middle_name'] : '';
@@ -6,12 +7,9 @@
 	$email = isset($_POST['email']) ? $_POST['email'] : '';
 	$user_role = isset($_POST['user_role']) ? $_POST['user_role'] : '';
 
-	/*
-	 * Enrypt password using salt and md5
-	 */
-	// $salt = uniqid(mt_rand(), true);
 	$password = isset($_POST['password']) ? $_POST['password'] : '';
-	$hashedpw = md5($password);
+	$hashedPassword = hashPassword( $password );
+	
 
 	/*
 	 * Save User Record
@@ -23,67 +21,88 @@
 		$result =  @mysqli_query($dbc, $q);
 
 		//SQL insert
-		$sql_insert = "INSERT INTO user (first_name,middle_name,last_name,username,password,rights)
-					VALUES ('$firstname','$middlename','$lastname','$email','$hashedpw','$user_role')";
+		$q_insert = "INSERT INTO user (first_name,middle_name,last_name,username,password,rights)
+					VALUES ('$firstname','$middlename','$lastname','$email','$hashedPassword','$user_role')";
+		$result_q = mysqli_query($dbc, $q_insert);
 
 		if ( $result->num_rows > 0) {
 			echo '<div class="alert alert-danger" role="alert">E-mail entered already registered.</div>';
 		}else{
-			if (mysqli_query($dbc, $sql_insert)) {
+			if ( $result_q ) {
 	    		echo '<div class="alert alert-success" role="alert">New user has been added.</div>';
 			} else {
-				echo "Error: " . $sql_insert . "<br>" . mysqli_error($dbc);
+				echo "Error: " . $q_insert . "<br>" . mysqli_error($dbc);
 			}
 		}
 		mysqli_close($dbc);
 	}//save
 
 	/*
-	 * Update User Record
+	 * Update User Profile
 	 */
 	
-	if ( isset( $_GET['action'] ) ) {
+	if ( isset( $_POST['user_update'] ) ) 
+	{
 
-    	$id = $_GET['id'];
-	    $sql_query = "SELECT * FROM user WHERE user_id = '$id'";
-	    $result =  @mysqli_query($dbc, $sql_query); 
+	    $query = "SELECT * FROM user WHERE username = '$username'";
+	    $result =  @mysqli_query($dbc, $query);
+		
+		$q_update = "UPDATE user SET first_name = '$firstname', middle_name = '$middlename', last_name = '$lastname', rights = '$user_role' WHERE username = '$username' ";
+		$result_q = mysqli_query($dbc, $q_update);
 
-	    if ( isset($_POST['user_update']) ) {
-			$sql_update = "UPDATE user SET first_name = '$firstname', middle_name = '$middlename', last_name = '$lastname', rights = '$user_role' WHERE user_id = '$id' ";
-			if (mysqli_query($dbc, $sql_update)) {
-				$result = @mysqli_query($dbc, $sql_query);
-	    		$msg = '<div class="alert alert-success" role="alert">User information has been updated successfully.</div>';
-			} else {
-				$msg = '<div class="alert alert-danger" role="alert">Error updating record: ' . mysqli_error($dbc) . '</div>';
-			}
-
-			mysqli_close($dbc);
+		if ( $result_q ) 
+		{
+    	    $result =  @mysqli_query($dbc, $query);
+    		$msg = '<div class="alert alert-success" role="alert">Profile has been updated successfully.</div>';
+		} else {
+			$msg = '<div class="alert alert-danger" role="alert">Error updating record: ' . mysqli_error($dbc) . '</div>';
 		}
+
+		mysqli_close($dbc);
     }
 
-	
+    /*
+     * Reset Password
+     */
+    
+    if ( isset($_POST['reset_password']) ) 
+    {
+    	$old_pw = $_POST['old_password'];
+    	$new_pw = $_POST['new_password'];
+    	$confirm_new_pw = $_POST['confirm_new_password'];
+
+    	$hashedPassword = hashPassword( $new_pw );
 
 
-	/*
-	 * Return role value
-	 */
-	function get_role( $role_id ){
-		switch ( $role_id ) {
-			case '4':
-				return "Master Administrator";
-				break;
+    	//Check if there is matching username and password in user table
+		$query = "SELECT * FROM user WHERE username = '$username'";
+		$result =  @mysqli_query($dbc, $q);
+		$row = mysqli_fetch_array( $result , MYSQLI_ASSOC );
 
-			case '3':
-				return "Administrator";
-				break;
+		if ( $result->num_rows == 1 ) 
+		{
+			if ( password_verify( $old_pw, $row['password'] ) ) 
+			{
+				if ( $new_pw == $confirm_new_pw ) 
+				{
+					$q_update = "UPDATE user SET password = '$hashedPassword' WHERE username = '$username' ";
+					$result_q = mysqli_query($dbc, $q_update);
 
-			case '2':
-				return "Department Head";
-				break;
-			
-			default:
-				return "Staff";
-				break;
+					if ( $result_q ) 
+					{
+			    		$msg = '<div class="alert alert-success" role="alert">Your password has been reset successfully.</div>';
+					} else {
+						$msg = '<div class="alert alert-danger" role="alert">Error updating record: ' . mysqli_error($dbc) . '</div>';
+					}
+				}else{
+					$msg = '<div class="alert alert-danger" role="alert">New Password and Confirm New Password did not match.</div>';
+				}
+			}else{
+					$msg = '<div class="alert alert-danger" role="alert">Incorrect Old Password.</div>';
+			}
 		}
 
-	}
+	    $result =  @mysqli_query($dbc, $query);
+
+		mysqli_close($dbc);
+    }
