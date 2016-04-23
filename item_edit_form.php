@@ -251,7 +251,7 @@
 <script>
     var data = <?php echo json_encode($_SESSION['rights']); ?>;
     $(document).ready(function(){
-        if (data != '3'){ // level 3 is required to perform this feature
+        if (data != '2'){ // level 2 is required to perform this feature
             alert('You are not allowed to use this feature!');
             window.location.assign("item_view.php");
         }
