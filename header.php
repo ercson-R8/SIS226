@@ -119,7 +119,11 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        <?php while ( $row = $result->fetch_assoc()) { ?>
+                        <?php echo $row['first_name']; ?>
+                        <?php echo $row['last_name']; ?>
+                        <?php } ?>
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -185,7 +189,7 @@
                                     <a href="stocks_authorize.php"><i class="fa fa-legal fa-fw"></i>Authorize Stocks Req.</a>
                                 </li>
                                 <li>
-                                    <a href="stocks_issue.php"><i class="fa fa-key fa-fw"></i>Issue Stocks</a>
+                                    <a href="stocks_issue_search.php"><i class="fa fa-key fa-fw"></i>Issue Stocks</a>
                                 </li>
                                 <li>
                                     <a href="stocks_receive_search.php"><i class="fa fa-truck fa-fw"></i>Receive Stocks</a>

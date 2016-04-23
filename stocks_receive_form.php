@@ -193,7 +193,7 @@
     
     // parameter s is status of stocks_receive_update.php which will either contain t/f
     if (isset($_GET['s']) ){ 
-        if (isset($_GET['s']) == '1'){
+        if (($_GET['s']) == '1'){
             $data['status'] = '<div class="alert alert-success alert-dismissable fade in">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button>
                                 <div class="text-center"><h4> The item <b>'.$data['itemName'] .'</b> was UPDATED successfully !</h4></div>
@@ -255,7 +255,7 @@
 <script>
     var rights = <?php echo json_encode($_SESSION['rights']); ?>;
     $(document).ready(function(){
-            if (rights != '3'){ // this feature is for Administrator/Store manager only.
+            if (rights != '2'){ // this feature is for Administrator/Store manager only.
                 alert('Not allowed to use this feature!');
                 window.location.assign("landing.php");
             }

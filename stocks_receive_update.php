@@ -95,16 +95,16 @@
                 } // end of stock update 
                 mysqli_stmt_close($stmt);
                 mysqli_close($dbc);
-                //return s=t or status is success; parameters: item+status
+                //return s=t or status is success; parameters: item+status 
                 $s = "Location: stocks_receive_form.php?i=".$data['itemNumber']."&s=".$r;
-                //header($s);
+                header($s);
                 exit;
             
             }else{
-                echo"<script>alert('Update unsuccessful. Please check your password.');
-                </script>";
-                $s = "Location: item_add_form.php?i=". $data['itemNumber']."&s=".$r;
-                //header($s);
+                $r = 0;
+                $s = "Location: stocks_receive_form.php?i=". $data['itemNumber']."&s=".$r;
+                echo $s;
+                header($s);
                 exit;
             }            
         }        
