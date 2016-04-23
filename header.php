@@ -9,7 +9,7 @@
     <meta name="author" content="">
 
     <title>SIS V1:Simplified Inventory System</title>
-
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -28,6 +28,12 @@
     <!-- Custom Fonts -->
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- Data Tables -->
+    <link rel="stylesheet" type="text/css" href="bower_components/datatables/media/css/dataTables.bootstrap.min.css">
+    <script type="text/javascript" src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="bower_components/datatables/media/js/dataTables.bootstrap.min.js"></script>
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -35,7 +41,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Custom CSS -->
+    <!-- SIS Custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
 

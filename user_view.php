@@ -15,17 +15,10 @@
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <form>
-                                    <input type="search" name="search" id="search" placeholder="Search by Surname" class="form-control input-md">
-                                    <div id="here"></div>
-                                </form>
-                            </div>
-                        </div>
                         <div class="dataTable_wrapper">
-                           <?php  require_once('user_get_list.php'); ?>
-                        </div><!-- /.table-responsive -->
+                            <div class="table-responsive">
+                                <?php  require_once('user_get_list.php'); ?>
+                            </div><!-- /.table-responsive -->
                     </div><!-- /.panel-body -->
                 </div><!-- /.panel -->
             </div><!-- /.col-lg-12 -->

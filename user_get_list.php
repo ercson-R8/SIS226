@@ -13,14 +13,8 @@
 	
 ?>
 <div class="row">
-	<div class="centered-block">&nbsp;</div>
 	<div class="col-lg-12">
-		<?php if ( isset( $_GET['q'] ) ): ?>
-			<p class="text-info">Total Registered Users: <?php echo $result->num_rows; ?></p>
-		<?php endif ?>
-	</div>
-	<div class="col-lg-12">
-		<table class="table table-striped table-bordered table-hover" id="userTable">
+		<table class="table table-striped table-bordered table-hover" id="dataTables-user">
 		    <thead>
 		            <th></th>
 		            <th>Last Name</th>
