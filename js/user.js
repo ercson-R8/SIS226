@@ -14,12 +14,12 @@ $(function(){
     $('input[name="del_user_record"]').on('click',function(){
 
         var _this = $(this);
-        var user_id = _this.siblings('input[name="user_id"]').val();
+        var id = _this.siblings('input[name="user_id"]').val();
         $.ajax({
                 type: "GET",
-                url: "user_delete.php?user_id=" + user_id,
+                url: "user_delete.php?user_id=" + id,
                 data: {
-                    user_id: user_id
+                    id: id
                 },
                 success: function( data ) {
                     window.setTimeout('location.reload()', 500);

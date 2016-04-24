@@ -40,69 +40,73 @@
 	/*
 	 * Update User Profile
 	 */
-	if ( isset($_SESSION['username']) ) {
-		$query = "SELECT * FROM user WHERE username = '$username'";
-    	$result =  @mysqli_query($dbc, $query);
-	}
-	
-	if ( isset( $_POST['user_update'] ) ) 
+	if ( isset( $_GET['action'] ) && $_GET['action'] == "edit" ) 
 	{
-		$q_update = "UPDATE user SET first_name = '$firstname', middle_name = '$middlename', last_name = '$lastname', rights = '$user_role' WHERE username = '$username' ";
-		$result_q = mysqli_query($dbc, $q_update);
-
-		if ( $result_q ) 
+		$id = $_GET['id'];
+		$query = "SELECT * FROM user WHERE user_id = '$id'";
+    	$result =  @mysqli_query($dbc, $query);
+		
+		if ( isset( $_POST['user_update'] ) ) 
 		{
-    	    $result =  @mysqli_query($dbc, $query);
-    		$msg = '<div class="alert alert-success" role="alert">Profile has been updated successfully.</div>';
-		} else {
-			$msg = '<div class="alert alert-danger" role="alert">Error updating record: ' . mysqli_error($dbc) . '</div>';
-		}
+			$q_update = "UPDATE user SET first_name = '$firstname', middle_name = '$middlename', last_name = '$lastname', rights = '$user_role' WHERE user_id = '$id' ";
+			$result_q = mysqli_query($dbc, $q_update);
 
-		mysqli_close($dbc);
-    }
+			if ( $result_q ) 
+			{
+	    		$msg = '<div class="alert alert-success" role="alert">Profile has been updated successfully.</div>';
+	    	    $result =  @mysqli_query($dbc, $query);
 
+			} else {
+				$msg = '<div class="alert alert-danger" role="alert">Error updating record: ' . mysqli_error($dbc) . '</div>';
+			}
+
+			mysqli_close($dbc);
+	    }
+	}
     /*
      * Reset Password
      */
     
-    if ( isset($_POST['reset_password']) ) 
+    if ( isset( $_GET['action'] ) && $_GET['action'] == "reset" ) 
     {
-    	$old_pw = $_POST['old_password'];
-    	$new_pw = $_POST['new_password'];
-    	$confirm_new_pw = $_POST['confirm_new_password'];
+		$id = $_GET['id'];
+		$query = "SELECT * FROM user WHERE user_id = '$id'";
+    	$result =  @mysqli_query($dbc, $query);
 
-    	$hashedPassword = hashPassword( $new_pw );
+	    if ( isset($_POST['reset_password']) ) 
+	    {
+	    	$old_pw = $_POST['old_password'];
+	    	$new_pw = $_POST['new_password'];
+	    	$confirm_new_pw = $_POST['confirm_new_password'];
 
+	    	$hashedPassword = hashPassword( $new_pw );
+			$row = mysqli_fetch_array( $result , MYSQLI_ASSOC );
 
-    	//Check if there is matching username and password in user table
-		$query = "SELECT * FROM user WHERE username = '$username'";
-		$result =  @mysqli_query($dbc, $q);
-		$row = mysqli_fetch_array( $result , MYSQLI_ASSOC );
-
-		if ( $result->num_rows == 1 ) 
-		{
-			if ( password_verify( $old_pw, $row['password'] ) ) 
+			if ( $result->num_rows == 1 ) 
 			{
-				if ( $new_pw == $confirm_new_pw ) 
+				if ( password_verify( $old_pw, $row['password'] ) ) 
 				{
-					$q_update = "UPDATE user SET password = '$hashedPassword' WHERE username = '$username' ";
-					$result_q = mysqli_query($dbc, $q_update);
-
-					if ( $result_q ) 
+					if ( $new_pw == $confirm_new_pw ) 
 					{
-			    		$msg = '<div class="alert alert-success" role="alert">Your password has been reset successfully.</div>';
-					} else {
-						$msg = '<div class="alert alert-danger" role="alert">Error updating record: ' . mysqli_error($dbc) . '</div>';
+						$q_update = "UPDATE user SET password = '$hashedPassword' WHERE user_id= '$id' ";
+						$result_q = mysqli_query($dbc, $q_update);
+
+						if ( $result_q ) 
+						{
+				    		$msg = '<div class="alert alert-success" role="alert">Your password has been reset successfully.</div>';
+						} else {
+							$msg = '<div class="alert alert-danger" role="alert">Error updating record: ' . mysqli_error($dbc) . '</div>';
+						}
+					}else{
+						$msg = '<div class="alert alert-danger" role="alert">New Password and Confirm New Password did not match.</div>';
 					}
 				}else{
-					$msg = '<div class="alert alert-danger" role="alert">New Password and Confirm New Password did not match.</div>';
+						$msg = '<div class="alert alert-danger" role="alert">Incorrect Old Password.</div>';
 				}
-			}else{
-					$msg = '<div class="alert alert-danger" role="alert">Incorrect Old Password.</div>';
 			}
-		}
 
-	    $result =  @mysqli_query($dbc, $query);
+		    $result =  @mysqli_query($dbc, $query);
 
-		mysqli_close($dbc);
-    }
+			mysqli_close($dbc);
+	    }	
+	}

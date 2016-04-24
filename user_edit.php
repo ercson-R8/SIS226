@@ -18,13 +18,13 @@
 			<div class="col-lg-6">
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						Edit User Information
+						Edit Information
 					</div>
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" role="form">
 								<?php while ( $row = $result->fetch_assoc()) { ?>
+								<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>?action=edit&amp;id=<?php echo $row['user_id']; ?>" method="post" role="form">
 									<div class="form-group">
 										<label>
 											E-mail Address
@@ -66,12 +66,11 @@
 									</div>
 									<div class="row ">
 										<div class="col-lg-12 text-right">
-											<button id="user_update" type="submit" name="user_update" class="btn btn-primary ">Update</button>
-											<button id="user_delete" type="submit" name="user_delete" class="btn btn-danger ">Delete</button>
+											<button id="user_update" type="submit" name="user_update" class="btn btn-primary ">Update Info</button>
 										</div>
 									</div>
-									<?php } mysqli_close($dbc);?>
 								</form>
+									<?php } mysqli_close($dbc);?>
 							</div>
 					</div>
 					</div><!-- /.panel-body-->

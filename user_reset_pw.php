@@ -6,7 +6,7 @@
 	<div id="page-wrapper">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Edit Account Settings</h1>
+				<h1 class="page-header">Manage Account Password</h1>
 			</div><!-- /.col-lg-12 -->
 		</div><!-- /.row -->
 		<div class="row">
@@ -23,8 +23,8 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" role="form">
 								<?php while ( $row = $result->fetch_assoc()) { ?>
+								<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>?action=reset&amp;id=<?php echo $row['user_id']; ?>" method="post" role="form">
 									<div class="form-group">
 										<label>
 											E-mail Address
@@ -58,8 +58,8 @@
 											<button id="reset_password" type="submit" name="reset_password" class="btn btn-primary ">Reset Password</button>
 										</div>
 									</div>
-									<?php } mysqli_close($dbc);?>
 								</form>
+									<?php } mysqli_close($dbc);?>
 							</div>
 					</div>
 					</div><!-- /.panel-body-->

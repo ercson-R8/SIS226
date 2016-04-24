@@ -27,7 +27,7 @@
 				    $_SESSION['username'] = $username;
 					$_SESSION['rights'] = $row['rights'];
 					$_SESSION['user_id'] = $row['user_id'];
-	    			header( "Location: user_edit.php" );
+	    			header( "Location: user_edit.php?action=edit&id=" . $_SESSION['user_id'] );
 				}
 				else {
 					$errormsg = '<div class="alert alert-danger" role="alert">Please check if you enter the correct password.</div>';
