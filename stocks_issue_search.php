@@ -18,7 +18,11 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading" id="item_name">
-                            <br/>
+                            These are all GRANTED requests as of 
+                            <?php 
+                            date_default_timezone_set("Asia/Muscat");
+                            echo date('Y-m-d H:i:s');
+                            ?><br/>
                              <!-- Item Name (item number) to be displayed here -->
                         </div>
                         <!-- /.panel-heading -->

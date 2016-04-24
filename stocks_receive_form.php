@@ -255,7 +255,7 @@
 <script>
     var rights = <?php echo json_encode($_SESSION['rights']); ?>;
     $(document).ready(function(){
-            if (rights != '2'){ // this feature is for Administrator/Store manager only.
+            if (rights != '2'){ // this feature is for Administrators/Store managers only.
                 alert('Not allowed to use this feature!');
                 window.location.assign("landing.php");
             }

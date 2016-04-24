@@ -1,36 +1,14 @@
-<?php
-
-
-if (!session_start()){
-    session_start();
-    }
-?>
-
 
 <table class="table table-striped table-bordered table-hover " id="dataTables-items">
     
 <?php
     if(true) {
         require_once('mysqli_connect.php');     
-        // Create a query for the database 
-        /*
-        
-        SELECT t.item_number, i.name, t.quantity, t.requester, t.authorizer, t.remarks_authorizer 
-        FROM transaction t 
-        INNER JOIN item i on i.item_number = t.item_number 
-        WHERE status = "Granted"
-        */
-        $query = "SELECT t.item_number, i.name, t.quantity, t.requester, t.authorizer, t.remarks_authorizer 
+        $query = "SELECT t.item_number, i.name, t.quantity, t.requester, t.authorizer, t.remarks_authorizer, t.transaction_id
                     FROM transaction t 
                     INNER JOIN item i on i.item_number = t.item_number 
-                    WHERE status = \"Granted\"";
-                                    
-        // Get a response from the database by sending the connection
-        // and the query
+                    WHERE status = \"Granted\"";                                  
         $response = @mysqli_query($dbc, $query);
-        //$row = mysqli_fetch_array($response);
-        //echo var_dump($row);
-        // If the query executed properly, proceed
         if($response){
             echo '
             <thead>
@@ -55,9 +33,9 @@ if (!session_start()){
                 
                 // produce the table
                 echo '<tr class="center "><td>' . 
-                '<a href="stocks_receive_form.php?i='.$row['item_number'].'" class="btn btn-xs btn-primary">
+                '<a href="stocks_issue_form.php?i='.$row['transaction_id'].'" class="btn btn-xs btn-primary">
                     <span class="fa fa-unlock-alt"></span>
-                </a>&nbsp;'.
+                </a> &nbsp;'                                                .
                 $row['item_number']                                         . '</td><td class="center">' .
                 $row['name']                                                . '</td><td class="center ">' .
                 $row['quantity']                                            . '</td><td class="center">' . 
