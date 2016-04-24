@@ -1,31 +1,29 @@
 $(function(){
-    $('form input:not([type="submit"]').keyup(function(event){
-        $('#userTable').hide();
-        $('#here').show();
-        var qstring = $('#search').val();
-            $.ajax({
-            type: 'GET',
-            url: 'user_get_list.php',
-            data:{q:qstring},
-            success:function(data){
-                $('#here').html(data);
-            }
-        });
+
+    var btn_save = $('input[name="save"]');
+    var btn_delete = $('input[name="del_user_record"]');
+
+
+    $('#dataTables-user').DataTable({
+            responsive: true,
+            order: [[ 1, "asc" ]],
+            columnDefs: [{ orderable: false, targets: 0 }],
+            iDisplayLength: 25
     });
 
     /*
      * Delete User Record
      */
     
-    $('input[name="del_user_record"]').on('click',function(){
+    btn_delete.on('click',function(){
 
         var _this = $(this);
-        var user_id = _this.siblings('input[name="user_id"]').val();
+        var id = _this.siblings('input[name="user_id"]').val();
         $.ajax({
                 type: "GET",
-                url: "user_delete.php?user_id=" + user_id,
+                url: "user_delete.php?user_id=" + id,
                 data: {
-                    user_id: user_id
+                    id: id
                 },
                 success: function( data ) {
                     window.setTimeout('location.reload()', 500);

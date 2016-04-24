@@ -9,7 +9,7 @@
     <meta name="author" content="">
 
     <title>SIS V1:Simplified Inventory System</title>
-
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -28,6 +28,12 @@
     <!-- Custom Fonts -->
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- Data Tables -->
+    <link rel="stylesheet" type="text/css" href="bower_components/datatables/media/css/dataTables.bootstrap.min.css">
+    <script type="text/javascript" src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="bower_components/datatables/media/js/dataTables.bootstrap.min.js"></script>
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -35,6 +41,9 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- SIS Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
 
 
 </head>
@@ -55,87 +64,24 @@
             
             
             <ul class="nav navbar-top-links navbar-right">
-
-                
+                <?php while ( $row = $result->fetch_assoc()) { ?>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-alerts -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <?php while ( $row = $result->fetch_assoc()) { ?>
-                        <?php echo $row['first_name']; ?>
-                        <?php echo $row['last_name']; ?>
-                        <?php } ?>
+                        <?php echo $row['last_name'] . ', ' . $row['first_name'] ; ?>
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="user_edit.php?action=edit&amp;id=<?php echo $row['user_id']; ?>"><i class="fa fa-user fa-fw"></i> Manage Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="user_reset_pw.php?action=reset&amp;id=<?php echo $row['user_id']; ?>"><i class="fa fa-gear fa-fw"></i> Reset Password</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
+                    </ul><!-- /.dropdown-user -->
                 </li>
+                <?php } ?>
+
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
@@ -143,7 +89,7 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
+                        <!-- <li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
@@ -152,26 +98,17 @@
                                 </button>
                             </span>
                             </div>
-                            <!-- /input-group -->
-                        </li>
+                        </li> -->
                         <!-- SIS Navigation List -->
-                        <li>
-                             <a href="#"><i class="fa fa-users fa-fw"></i> Users<span class="fa arrow"></span></a>
-                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="user_add.php">Add Users</a>
-                                </li>
-                                <li>
-                                    <a href="user_view.php">View/Search Users</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        
                         <li>
                              <a href="#"><i class="fa fa-list-alt fa-fw"></i> Items<span class="fa arrow"></span></a>
                              <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="item_add.php">Add Items</a>
+                                    <a href="item_request.php">Request for New Item</a>
+                                </li>
+                                <li>
+                                    <a href="item_add.php">Add New Items</a>
                                 </li>
                                 <li>
                                     <a href="item_view.php">View Items</a>
@@ -198,6 +135,18 @@
                                     <a href="stocks_view.php"><i class="fa fa-search fa-fw"></i>Search/View Stocks</a>
                                 </li>
 
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                             <a href="#"><i class="fa fa-users fa-fw"></i> Users<span class="fa arrow"></span></a>
+                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="user_add.php">Add Users</a>
+                                </li>
+                                <li>
+                                    <a href="user_view.php">View/Search Users</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

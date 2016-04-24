@@ -1,6 +1,7 @@
 <?php 
 	require_once('header.php');
-	require_once('mysqli_connect.php');
+	require_once('user.control.php');
+
 ?>
 	<div id="page-wrapper">
 		<div class="row">
@@ -10,7 +11,7 @@
 		</div><!-- /.row -->
 		<div class="row">
 			<div class="col-lg-12">
-				<?php require_once('user.control.php'); ?>
+				<?php echo $msg; ?>
 			</div>
 		</div>
 		<div class="row">
@@ -26,9 +27,9 @@
 									<div class="form-group">
 										<label>
 											First Name
-											<span class="asteriskField">*</span>
+											<span class="asteriskField text-danger">*</span>
 										</label>
-										<input type="text" name="first_name" class="form-control" >
+										<input type="text" name="first_name" class="form-control" required>
 									</div>
 									<div class="form-group">
 										<label>Middle Name</label>
@@ -37,16 +38,16 @@
 									<div class="form-group">
 										<label>
 											Last Name
-											<span class="asteriskField">*</span>
+											<span class="asteriskField text-danger">*</span>
 										</label>
-										<input type="text" name="last_name" class="form-control" >
+										<input type="text" name="last_name" class="form-control" required>
 									</div>
 									<div class="form-group">
 										<label>
 											E-mail Address
-											<span class="asteriskField">*</span>
+											<span class="asteriskField text-danger">*</span>
 										</label>
-										<input type="text" name="email" class="form-control" >
+										<input type="email" name="email" class="form-control" required>
 										<p class="help-block">E-mail address will be used as your username.</p>
 									</div>
 									<div class="form-group">
@@ -54,7 +55,7 @@
 											Password
 											<span class="asteriskField">*</span>
 										</label>
-										<input type="password" name="password" class="form-control" >
+										<input type="password" name="password" class="form-control" required>
 									</div>
 									<div class="form-group">
 										<label>Role</label>

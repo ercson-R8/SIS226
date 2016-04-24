@@ -1,9 +1,9 @@
 <?php
 	session_start();
     require_once( 'mysqli_connect.php' );
+    require_once( 'global_function.php' );
 
     $errormsg = "";
-
     /*
      * Login
      */
@@ -12,36 +12,32 @@
     	if ( empty( $_POST['username']) || empty($_POST['password'])) {
 			$errormsg = '<div class="alert alert-danger" role="alert">Username and Password are required.</div>';
     	}else{
-    		//Define username and password
-    		$username = $_POST['username'];
-    		$password = $_POST['password'];
-
-    		$username = stripslashes($username);
-			$password = stripslashes($password);
-			$username = mysqli_real_escape_string($dbc, $username);
-			$password = mysqli_real_escape_string($dbc, $password);
-
-			// $salt = uniqid(mt_rand(), true);
-			$password = md5($password);
+    		 //Define username and password
+			$username = $_POST['username'];
+			$password = $_POST['password'];
 
 			//Check if there is matching username and password in user table
-			$sql_query = "SELECT * FROM user WHERE username = '$username' and password = '$password'";
-			$result =  @mysqli_query($dbc, $sql_query);
+			$q = "SELECT * FROM user WHERE username = '$username'";
+			$result =  @mysqli_query($dbc, $q);
+			$row = mysqli_fetch_array( $result , MYSQLI_ASSOC ); 
 
-			$row = mysqli_fetch_array($result,MYSQLI_ASSOC); 
-
-			//Now create a session if username and password exists
-			
     		if ( $result->num_rows == 1) {
-    			$_SESSION['id'] = $username;
-				$_SESSION['rights'] = $row['rights'];
-				$_SESSION['user_id'] = $row['user_id'];
-    			header( "Location: user_view.php" );
+    			//Verify password at this point
+    			if (password_verify($password, $row['password'])) {
+				    $_SESSION['username'] = $username;
+					$_SESSION['rights'] = $row['rights'];
+					$_SESSION['user_id'] = $row['user_id'];
+	    			header( "Location: user_edit.php?action=edit&id=" . $_SESSION['user_id'] );
+				}
+				else {
+					$errormsg = '<div class="alert alert-danger" role="alert">Please check if you enter the correct password.</div>';
+				}
     		}else{
-				$errormsg = '<div class="alert alert-danger" role="alert">Please check if you enter the correct username and password.</div>';
+				$errormsg = '<div class="alert alert-danger" role="alert">Please check if you enter the correct username.</div>';
     		}
     	}
-     }//$_POST['login-submit']
+		mysqli_close($dbc);
+     }
 
     /*
      * User Registration
@@ -52,20 +48,15 @@
     	$password = isset($_POST['password']) ? $_POST['password'] : '';
     	$confirm_password = isset($_POST['confirm-password']) ? $_POST['confirm-password'] : '';
     	
-    	$username = stripslashes($username);
-		$password = stripslashes($password);
-		$confirm_password = stripslashes($confirm_password);
-		$username = mysqli_real_escape_string($dbc, $username);
-		$password = mysqli_real_escape_string($dbc, $password);
-    	$hashedpw = md5($password);
+    	$hashedPassword = hashPassword( $password );
 
     	//Check if e-mail is already registered
-		$q = "SELECT * FROM user WHERE username = '$username'";
-		$result =  @mysqli_query($dbc, $q);
+		$query = "SELECT * FROM user WHERE username = '$username'";
+		$result =  @mysqli_query($dbc, $query);
 
 		//SQL insert
 		$sql_insert = "INSERT INTO user (first_name,middle_name,last_name,username,password,rights)
-					VALUES ('','','','$username','$hashedpw','1')";
+					VALUES ('','','','$username','$hashedPassword','1')";
 
 		if ( $result->num_rows > 0) {
 			$errormsg =  '<div class="alert alert-danger" role="alert">E-mail entered already registered.</div>';
@@ -90,20 +81,19 @@
     /*
      * Reset Pssword
      */
-    
     if ( $_POST['reset-submit']) {
     	$username = isset($_POST['email']) ? $_POST['email'] : '';
 		$password = generate_password(8);
-		$hashedpw = md5($password);
+    	$hashedPassword = hashPassword( $password );
 
 		if ( empty( $username)) {
 			$errormsg =  '<div class="alert alert-danger" role="alert">E-mail is required.</div>';
 		}else{
-			$sql_update = "UPDATE user SET password = '$hashedpw' WHERE username = '$username' ";
+			$sql_update = "UPDATE user SET password = '$hashedPassword' WHERE username = '$username' ";
 			if (mysqli_query($dbc, $sql_update)) {
 				$result = @mysqli_query($dbc, $sql_query);
 	    		$errormsg = '<div class="alert alert-success" role="alert">New password has been sent to your email.</div>';
-	    		echo $password;
+	    		
 	    		//Send generated password to email
 	    		$to = $username;
 				$subject = "Do not reply: Password Reset";
@@ -115,11 +105,10 @@
 			} else {
 				$errormsg = '<div class="alert alert-danger" role="alert">Error updating record: ' . mysqli_error($dbc) . '</div>';
 			}
-
 			mysqli_close($dbc);
 		}
     }
-
+    
     /*
      * Generate Password
      */
