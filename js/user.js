@@ -1,5 +1,9 @@
 $(function(){
 
+    var btn_save = $('input[name="save"]');
+    var btn_delete = $('input[name="del_user_record"]');
+
+
     $('#dataTables-user').DataTable({
             responsive: true,
             order: [[ 1, "asc" ]],
@@ -11,7 +15,7 @@ $(function(){
      * Delete User Record
      */
     
-    $('input[name="del_user_record"]').on('click',function(){
+    btn_delete.on('click',function(){
 
         var _this = $(this);
         var id = _this.siblings('input[name="user_id"]').val();

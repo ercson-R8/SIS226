@@ -1,5 +1,6 @@
 <?php
 	require_once('global_function.php');
+	require_once('mysqli_connect.php');
 
 	$firstname = isset($_POST['first_name']) ? $_POST['first_name'] : '';
 	$middlename = isset($_POST['middle_name']) ? $_POST['middle_name'] : '';
@@ -10,30 +11,40 @@
 	$password = isset($_POST['password']) ? $_POST['password'] : '';
 	$hashedPassword = hashPassword( $password );
 
+	$firstname =  validate_input( $firstname );
+	$middlename = validate_input( $middlename );
+	$lastname = validate_input( $lastname );
+	$email =  validate_input( $email );
 
 	/*
 	 * Save User Record
 	 */
 	if (isset( $_POST['save'])) 
-	{
-		//Check if e-mail is already registered
-		$q = "SELECT * FROM user WHERE username = '$email'";
-		$result =  @mysqli_query($dbc, $q);
+	{	
+		if ( !empty( $firstname ) and !empty(  $lastname ) and !empty( $email ) ) 
+		{
+			//Check if e-mail is already registered
+			$query = "SELECT * FROM user WHERE username = '$email'";
+			$result =  @mysqli_query($dbc, $query);
 
-		//SQL insert
-		$q_insert = "INSERT INTO user (first_name,middle_name,last_name,username,password,rights)
-					VALUES ('$firstname','$middlename','$lastname','$email','$hashedPassword','$user_role')";
-		$result_q = mysqli_query($dbc, $q_insert);
+			//SQL insert
+			$q_insert = "INSERT INTO user (first_name,middle_name,last_name,username,password,rights)
+						VALUES ('$firstname','$middlename','$lastname','$email','$hashedPassword','$user_role')";
+			$result_q = mysqli_query($dbc, $q_insert);
 
-		if ( $result->num_rows > 0) {
-			echo '<div class="alert alert-danger" role="alert">E-mail entered already registered.</div>';
-		}else{
-			if ( $result_q ) {
-	    		echo '<div class="alert alert-success" role="alert">New user has been added.</div>';
-			} else {
-				echo "Error: " . $q_insert . "<br>" . mysqli_error($dbc);
+			if ( $result->num_rows > 0) {
+				$msg =  '<div class="alert alert-danger" role="alert">E-mail entered already registered.</div>';
+			}else{
+				if ( $result_q ) {
+		    		$msg =  '<div class="alert alert-success" role="alert">New user has been added.</div>';
+				} else {
+					$msg =  '<div class="alert alert-danger" role="alert">Error: ' . $q_insert . "<br>" . mysqli_error($dbc) . '</div>';
+				}
 			}
+		}else{
+				$msg =  '<div class="alert alert-danger" role="alert">First Name, Last Name and E-mail address are required fields.</div>';
 		}
+
 		mysqli_close($dbc);
 	}//save
 
@@ -46,22 +57,27 @@
 		$query = "SELECT * FROM user WHERE user_id = '$id'";
     	$result =  @mysqli_query($dbc, $query);
 		
-		if ( isset( $_POST['user_update'] ) ) 
+		if ( !empty( $firstname ) and !empty(  $lastname ) ) 
 		{
-			$q_update = "UPDATE user SET first_name = '$firstname', middle_name = '$middlename', last_name = '$lastname', rights = '$user_role' WHERE user_id = '$id' ";
-			$result_q = mysqli_query($dbc, $q_update);
-
-			if ( $result_q ) 
+			if ( isset( $_POST['user_update'] ) ) 
 			{
-	    		$msg = '<div class="alert alert-success" role="alert">Profile has been updated successfully.</div>';
-	    	    $result =  @mysqli_query($dbc, $query);
+				$q_update = "UPDATE user SET first_name = '$firstname', middle_name = '$middlename', last_name = '$lastname', rights = '$user_role' WHERE user_id = '$id' ";
+				$result_q = mysqli_query($dbc, $q_update);
 
-			} else {
-				$msg = '<div class="alert alert-danger" role="alert">Error updating record: ' . mysqli_error($dbc) . '</div>';
-			}
+				if ( $result_q ) 
+				{
+		    		$msg = '<div class="alert alert-success" role="alert">Profile has been updated successfully.</div>';
+		    	    $result =  @mysqli_query($dbc, $query);
 
-			mysqli_close($dbc);
-	    }
+				} else {
+					$msg = '<div class="alert alert-danger" role="alert">Error updating record: ' . mysqli_error($dbc) . '</div>';
+				}
+
+				mysqli_close($dbc);
+		    }
+		} else{
+			$msg =  '<div class="alert alert-danger" role="alert">First Name and Last Name are required fields.</div>';
+		}
 	}
     /*
      * Reset Password

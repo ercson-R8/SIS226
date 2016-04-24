@@ -1,6 +1,5 @@
 <?php 
 	include('header.php');
-	require_once('mysqli_connect.php');
     require_once( 'user.control.php' );
 ?>
 	<div id="page-wrapper">

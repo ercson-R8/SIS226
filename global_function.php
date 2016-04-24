@@ -1,6 +1,16 @@
 <?php 
 
 	/*
+	 * Form Validation
+	 */
+	
+	function validate_input( $data ) {
+	  $data = trim($data);
+	  $data = stripslashes($data);
+	  $data = htmlspecialchars($data);
+	  return $data;
+	}
+	/*
 	 * Password Hashing
 	 */
 	function hashPassword( $password ) 
