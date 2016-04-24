@@ -29,14 +29,14 @@
 											E-mail Address
 											<span class="asteriskField">*</span>
 										</label>
-										<input type="text" name="username" class="form-control" value="<?php echo $row['username']; ?>" readonly>
+										<input type="email" name="username" class="form-control" value="<?php echo $row['username']; ?>" readonly>
 									</div>
 									<div class="form-group">
 										<label>
 											First Name
 											<span class="asteriskField">*</span>
 										</label>
-										<input type="text" name="first_name" class="form-control" value="<?php echo $row['first_name']; ?>" >
+										<input type="text" name="first_name" class="form-control" value="<?php echo $row['first_name']; ?>" required >
 									</div>
 									<div class="form-group">
 										<label>Middle Name</label>
@@ -47,7 +47,7 @@
 											Last Name
 											<span class="asteriskField">*</span>
 										</label>
-										<input type="text" name="last_name" class="form-control" value="<?php echo $row['last_name']; ?>" >
+										<input type="text" name="last_name" class="form-control" value="<?php echo $row['last_name']; ?>" required >
 									</div>
 									<!-- TODO: only show if user role is master administrator -->
 									<div class="form-group">

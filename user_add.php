@@ -29,7 +29,7 @@
 											First Name
 											<span class="asteriskField text-danger">*</span>
 										</label>
-										<input type="text" name="first_name" class="form-control" >
+										<input type="text" name="first_name" class="form-control" required>
 									</div>
 									<div class="form-group">
 										<label>Middle Name</label>
@@ -40,14 +40,14 @@
 											Last Name
 											<span class="asteriskField text-danger">*</span>
 										</label>
-										<input type="text" name="last_name" class="form-control" >
+										<input type="text" name="last_name" class="form-control" required>
 									</div>
 									<div class="form-group">
 										<label>
 											E-mail Address
 											<span class="asteriskField text-danger">*</span>
 										</label>
-										<input type="text" name="email" class="form-control" >
+										<input type="email" name="email" class="form-control" required>
 										<p class="help-block">E-mail address will be used as your username.</p>
 									</div>
 									<div class="form-group">
@@ -55,7 +55,7 @@
 											Password
 											<span class="asteriskField">*</span>
 										</label>
-										<input type="password" name="password" class="form-control" >
+										<input type="password" name="password" class="form-control" required>
 									</div>
 									<div class="form-group">
 										<label>Role</label>
