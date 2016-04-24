@@ -57,9 +57,9 @@
 		$query = "SELECT * FROM user WHERE user_id = '$id'";
     	$result =  @mysqli_query($dbc, $query);
 		
-		if ( !empty( $firstname ) and !empty(  $lastname ) ) 
+		if ( isset( $_POST['user_update'] ) ) 
 		{
-			if ( isset( $_POST['user_update'] ) ) 
+			if ( !empty( $firstname ) and !empty(  $lastname ) ) 
 			{
 				$q_update = "UPDATE user SET first_name = '$firstname', middle_name = '$middlename', last_name = '$lastname', rights = '$user_role' WHERE user_id = '$id' ";
 				$result_q = mysqli_query($dbc, $q_update);
@@ -74,10 +74,10 @@
 				}
 
 				mysqli_close($dbc);
-		    }
-		} else{
+		    } else{
 			$msg =  '<div class="alert alert-danger" role="alert">First Name and Last Name are required fields.</div>';
-		}
+			}
+		} 
 	}
     /*
      * Reset Password
