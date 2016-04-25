@@ -49,5 +49,27 @@
 
 	}
 
+	/*
+	 * Request Status
+	 */
+	
+	function request_status( $status_id )
+	{
+		switch ( $status_id ) {
+			case '20':
+				return "Rejected";
+				break;
+
+			case '30':
+				return "Approved";
+				break;
+
+			default:
+				return "Pending";
+				break;
+		}
+
+	}
+
 
 ?>

@@ -1,5 +1,6 @@
 <?php 
 	require_once('header.php');
+	require_once('item_request_control.php');
 
 ?>
 	<div id="page-wrapper">
@@ -34,22 +35,11 @@
 										<input type="number" name="rq_quantity" class="form-control" min="1" placeholder="Ex: 10" required>
 									</div>
 									<div class="form-group">
-										<label>
-											Requested By
-										</label>
-										<input type="text" name="rq_name_by" class="form-control" value="<?php echo $fullname; ?>" readonly>
+										<input type="hidden" name="rq_by" class="form-control" value="<?php echo $fullname; ?>" readonly>
 									</div>
-									<div class="form-group">
-										<label>
-											Date/Time Requested
-										</label>
-										<input type="text" name="rq_date" class="form-control" value="<?php echo date('d/m/Y  h:i:sa'); ?>" readonly>
-										<p class="help-block"> Date Format: Day/Month/Year</p>
-									</div>
-									
 									<div class="row">
 										<div class="col-lg-4 col-lg-offset-8">
-											<button type="submit" name="submit_request" class="btn btn-primary btn-block">Send Request</button>
+											<button type="submit" name="send_request" class="btn btn-primary btn-block">Send Request</button>
 										</div>
 									</div>
 
