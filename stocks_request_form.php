@@ -248,7 +248,7 @@
         quantity = parseInt(document.forms["stocksRequest"]["quantity"].value,10);
         availBal = parseInt(document.getElementById("availBal").innerHTML,10);
         authorizer = document.forms["stocksRequest"]["authorizer"].value;
-        if (quantity <= availBal){
+        if ((availBal > 0 ) && (quantity <= availBal)){
             if(authorizer != ''){
                 return true;
             }else{
@@ -272,7 +272,7 @@
 <script>
     var rights = <?php echo json_encode($_SESSION['rights']); ?>;
     $(document).ready(function(){
-            if (rights != '2'){ // this feature is for Administrators/Store managers only.
+            if (rights != '3'){ // this feature is for Administrators/Store managers only.
                 alert('Not allowed to use this feature!');
                 window.location.assign("landing.php");
             }

@@ -104,7 +104,7 @@
                             <!-- /.row (nested) -->
                             
                             <hr>
-                                <form action="stocks_receive_update.php" name="stocksIssue" id="stocksIssue"  onclick="return hashPassword();"method="post">
+                                <form action="stocks_issue_update.php" name="stocksIssue" id="stocksIssue"  onclick="return hashPassword();"method="post">
                                         <div class="row">
                                             <div class="col-lg-1">
                                             </div>
@@ -153,7 +153,6 @@
 
 
 <?php 
-
     /*
     * fetch the data and by searching the table
     * pass the data to the script below to populate the span ids...
@@ -163,7 +162,6 @@
         $query ="SELECT * FROM ".$table." WHERE ".$field."=\"$key\" ".$extra;
         $response = @mysqli_query($dbc, $query);
         return (mysqli_fetch_array($response));
-        
     }
     $data['transaction_id'] = ( $_GET['i'] ); // transaction id
     /* fetch the following 
@@ -231,8 +229,6 @@
         document.forms["stocksIssue"]["transaction_id"].value = data['transaction_id'];
         document.forms["stocksIssue"]["quantity"].value = data['quantity'];
         document.forms["stocksIssue"]["remarks_store_manager"].value = "";
-        
-        
     }
     
     function hashPassword(){
@@ -255,7 +251,7 @@
 <script>
     var rights = <?php echo json_encode($_SESSION['rights']); ?>;
     $(document).ready(function(){
-            if (rights != '2'){ // this feature is for Administrators/Store managers only.
+            if (rights != '3'){ // this feature is for Administrators/Store managers only.
                 alert('Not allowed to use this feature!');
                 window.location.assign("stocks_view.php");
             }
