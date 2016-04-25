@@ -64,46 +64,36 @@
             
             
             <ul class="nav navbar-top-links navbar-right">
-                <?php while ( $row = $result->fetch_assoc()) { ?>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <?php echo $row['last_name'] . ', ' . $row['first_name'] ; ?>
+                        <?php echo $fullname;  ?>
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="user_edit.php?action=edit&amp;id=<?php echo $row['user_id']; ?>"><i class="fa fa-user fa-fw"></i> Manage Profile</a>
+                        <li><a href="user_edit.php?action=edit&amp;id=<?php echo $_SESSION['user_id']; ?>"><i class="fa fa-user fa-fw"></i> Manage Profile</a>
                         </li>
-                        <li><a href="user_reset_pw.php?action=reset&amp;id=<?php echo $row['user_id']; ?>"><i class="fa fa-gear fa-fw"></i> Reset Password</a>
+                        <li><a href="user_reset_pw.php?action=reset&amp;id=<?php echo $_SESSION['user_id']; ?>"><i class="fa fa-gear fa-fw"></i> Reset Password</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul><!-- /.dropdown-user -->
-                </li>
-                <?php } ?>
-
-                <!-- /.dropdown -->
+                </li><!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <!-- <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                        </li> -->
-                        <!-- SIS Navigation List -->
-                        
+                        <li>
+                            <a href="item_requisition.php">
+                                <i class="fa fa-pencil-square-o fa-fw"></i>Requisitions
+                            </a>
+                        </li>
                         <li>
                              <a href="#"><i class="fa fa-list-alt fa-fw"></i> Items<span class="fa arrow"></span></a>
                              <ul class="nav nav-second-level">
+
                                 <li>
                                     <a href="item_request.php">Request for New Item</a>
                                 </li>
