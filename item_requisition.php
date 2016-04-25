@@ -7,21 +7,21 @@
 	$result = @mysqli_query( $dbc, $query );
 
 	$q_pending="SELECT * FROM item_request WHERE status = '10'";
-	if ($result_p=mysqli_query($dbc,$q_pending)){
+	if ($result_p=@mysqli_query($dbc,$q_pending)){
 		// Return the number of rows in result set
 		$count_p=mysqli_num_rows($result_p);
 		mysqli_free_result($result_p);
 	}
 
 	$q_approved="SELECT * FROM item_request WHERE status = '30'";
-	if ($result_a=mysqli_query($dbc,$q_approved)){
+	if ($result_a=@mysqli_query($dbc,$q_approved)){
 		// Return the number of rows in result set
 		$count_a=mysqli_num_rows($result_a);
 		mysqli_free_result($result_a);
 	}
 
 	$q_reject="SELECT * FROM item_request WHERE status = '20'";
-	if ($result_r=mysqli_query($dbc,$q_reject)){
+	if ($result_r=@mysqli_query($dbc,$q_reject)){
 		// Return the number of rows in result set
 		$count_r=mysqli_num_rows($result_r);
 		mysqli_free_result($result_r);
@@ -34,11 +34,6 @@
 				<h1 class="page-header">Requisitions</h1>
 			</div><!-- /.col-lg-12 -->
 		</div><!-- /.row -->
-		<div class="row">
-			<div class="col-lg-12">
-				<?php echo $msg; ?>
-			</div>
-		</div>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-info">
@@ -68,14 +63,12 @@
 											<td><?php echo $row['quantity']; ?></td>
 											<td><?php echo $row['rq_by']; ?></td>
 											<td><?php echo $row['rq_date']; ?></td>
-											<td><?php echo request_status($row['status']); ?></td>
+											<td id="<?php echo $row['status']; ?>"><?php echo request_status($row['status']); ?></td>
 											<td>
 												<a href="#" class="btn btn-xs btn-success">
 									                <span class="fa fa-thumbs-up"></span> Approve
 									            </a>
-									            <a href="#" class="btn btn-xs btn-danger">
-									                <span class="fa fa-thumbs-down"></span> Reject
-									            </a>
+									           <?php include('item_requisition_reject_modal.php'); ?>
 									        </td>
 										</tr>
 										<?php } mysqli_close( $dbc );?>

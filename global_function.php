@@ -64,7 +64,7 @@
 				return "Approved";
 				break;
 
-			default:
+			case '10':
 				return "Pending";
 				break;
 		}
