@@ -6,8 +6,13 @@
     $q = "SELECT * FROM user WHERE username = '$username'";
     $result =  @mysqli_query($dbc, $q);
     
+    while ( $row = $result->fetch_assoc()) 
+    { 
+		$fullname = $row['first_name'] . ' ' . $row['last_name'];
+	} 
     
     if( !isset(  $username ) ){
         header("Location: index.php");
     }
+
 ?>
