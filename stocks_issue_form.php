@@ -198,12 +198,12 @@
         if (($_GET['s']) == '1'){
             $data['status'] = '<div class="alert alert-success alert-dismissable fade in">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button>
-                                <div class="text-center"><h4> The item <b>'.$data['itemName'] .'</b> was ISSUED successfully !</h4></div>
+                                <div class="text-center"><h4> The requested item <b>'.$data['itemName'] .'</b> was ISSUED successfully !</h4></div>
                             </div>';
         }else{
             $data['status'] = '<div class="alert alert-danger alert-dismissable fade in">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <div class="text-center"> Error. The item <b>'.$data['itemName'] .'</b> was NOT ISSUED!</div>
+                            <div class="text-center"> Error. The issueing the item <b>'.$data['itemName'] .'</b></div>
                         </div>';
         }
         

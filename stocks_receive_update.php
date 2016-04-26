@@ -16,7 +16,7 @@
                 $data['userID'] = $_SESSION["userID"];
                 */
                 $data['userID'] = $_SESSION['user_id'];
-                $data['suppliedPassword'] = md5(strip_tags($_POST['password']));
+                $data['suppliedPassword'] = (strip_tags($_POST['password']));
                 $data['remarks_store_manager'] = strip_tags($_POST['remarks_store_manager']);
                 $data['itemNumber'] = strip_tags($_POST['itemNumber']);
                 $data['balance_available'] = (int)strip_tags($_POST['availBal']);
@@ -32,7 +32,7 @@
             echo "<br/>password=".$data['password']; 
 
             // verify supplied with stored password
-            if ($data['suppliedPassword']==$data['password']){ // ( $data['password'] == $suppliedPassword) 
+            if ((password_verify($data['suppliedPassword'], $data['password']))){//($data['suppliedPassword']==$data['password']){ // ( $data['password'] == $suppliedPassword) 
                 // create an "add" transaction and then update the stocks table
                 if (true){
                     // transaction_id	= this is an AI

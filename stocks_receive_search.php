@@ -54,7 +54,7 @@
     // Initialising DataTables
     $(document).ready(function() {
         var rights = <?php echo json_encode($_SESSION['rights']); ?>;
-        if (rights != '2'){ // this feature is for Store manager only.
+        if (rights != '3'){ // this feature is for Store manager only.
             alert('You are not allowed to use this feature!');
             window.location.assign("stocks_view.php");
         }

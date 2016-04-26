@@ -140,7 +140,7 @@
     }
     
     function queryDb( $table, $field, $key, $extra=""){
-        require('mysqli_connect.php');
+        require_once('mysqli_connect.php');
         $query ="SELECT * FROM ".$table." WHERE ".$field."=\"$key\" ".$extra;
         $response = @mysqli_query($dbc, $query);
         return (mysqli_fetch_array($response));
