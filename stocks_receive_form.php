@@ -201,7 +201,7 @@
         }else{
             $data['status'] = '<div class="alert alert-danger alert-dismissable fade in">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <div class="text-center"> The item <b>'.$data['itemName'] .'</b> was NOT updated successfully!</div>
+                            <div class="text-center"> The item <b>'.$data['itemName'] .'</b> was NOT updated successfully! Please check your password</div>
                         </div>';
         }
         

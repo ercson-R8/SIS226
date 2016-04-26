@@ -124,10 +124,10 @@
                                             </div>
 
                                             <div class="col-lg-5">
-                                                <button type="submit" name="stocksIssueConfirm" class="btn btn-primary btn-lg btn-block"  >
+                                                <button type="submit" name="stocksIssueConfirm" id="confirm" class="btn btn-primary btn-lg btn-block"  >
                                                     Confirm
                                                 </button>
-                                                <a href="stocks_receive_search.php" id="cancel" class="btn btn-warning btn-lg btn-block">Cancel </a>
+                                                <a href="stocks_issue_search.php" id="cancel" class="btn btn-warning btn-lg btn-block">Cancel </a>
                                             </div>
                                             <div class="col-lg-1">
                                             </div>
@@ -176,7 +176,7 @@
     $data['item_number']            = $row['item_number']; 
     $data['requester']              = $row['requester'];
     $data['authorizer']             = $row['authorizer'];
-    $data['authorizer_remarks']     = $row['remarks_authorizer'];
+    $data['remarks']                = $row['remarks_authorizer'];
     $data['quantity']               = $row['quantity'];
       
     $row = queryDb('item', 'item_number',$data['item_number']);// use to fetch the item name
@@ -191,7 +191,8 @@
     $data['aut_last_name']              = $row['last_name'];
         
     $row = queryDb('user', 'user_id',$_SESSION['user_id']);// use to fetch the current user info 
-    $data['password']             = $row['password'];
+    $data['password']                   = $row['password'];
+    $data['disableControls']            = false;
     
     // parameter s is status of stocks_receive_update.php which will either contain t/f
     if (isset($_GET['s']) ){ 
@@ -200,10 +201,12 @@
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button>
                                 <div class="text-center"><h4> The requested item <b>'.$data['itemName'] .'</b> was ISSUED successfully !</h4></div>
                             </div>';
+            $data['remarks']                = $row['remarks_store_manager'];
+            $data['disableControls']        = true;
         }else{
             $data['status'] = '<div class="alert alert-danger alert-dismissable fade in">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <div class="text-center"> Error. The issueing the item <b>'.$data['itemName'] .'</b></div>
+                            <div class="text-center"> Error. Please verify your <b>password</b></div>
                         </div>';
         }
         
@@ -218,26 +221,28 @@
 <script>
     var data = <?php echo json_encode($data); ?>;
     // populate the span ids...
-    {
+    if (!data['disableControls']){
         document.getElementById("authorizer").innerHTML = data['aut_first_name']+' '+data['aut_last_name'];
         document.getElementById("quantity").innerHTML = data['quantity'];
         document.getElementById("itemName").innerHTML = data['item_name']+':'+data['item_number'];
-        document.getElementById("remarks").innerHTML = data['authorizer_remarks'];
+        document.getElementById("remarks").innerHTML = data['remarks'];
         document.getElementById("Requester").innerHTML = data['req_first_name']+' '+data['req_last_name'];
         document.getElementById("stockIssueStatus").innerHTML = data['status'];
         
         document.forms["stocksIssue"]["transaction_id"].value = data['transaction_id'];
         document.forms["stocksIssue"]["quantity"].value = data['quantity'];
         document.forms["stocksIssue"]["remarks_store_manager"].value = "";
+    }else{
+        document.forms["stocksIssue"]["confirm"].disabled = true;
+        document.getElementById("cancel").innerHTML = "Home";
+        document.forms["stocksIssue"]["remarks_store_manager"].disabled = true;
+        document.forms["stocksIssue"]["password"].disabled = true;
+        document.getElementById("stockIssueStatus").innerHTML = data['status'];
     }
     
     function hashPassword(){
         password = document.forms["stocksIssue"]["password"].value;
         if (password != ""){
-            //alert(password);
-            //password = hex_sha512(password);
-            //password = <?php //echo'"'.md5(password).'"'; ?> ;
-            //alert(password);
             document.forms["stocksIssue"]["password"].value = password;
             return true;
         }        

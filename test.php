@@ -106,7 +106,34 @@
             echo '<br/>1<br/>$row--> ';
             echo var_dump($row);
 
-
+    $id = 'XX-CM-0066';
+    require('mysqli_connect.php');
+                    $query = "SELECT * FROM stock 
+                                WHERE item_number LIKE \"$id\" 
+                                ORDER BY `transaction_id` DESC";   
+    $response = @mysqli_query($dbc, $query);
+    $i = 0;
+    while ($row= mysqli_fetch_array($response)){
+        echo '<br/>row: '.$row['balance_available'];
+        $data[] = $row['balance_available'];
+    }
+    mysqli_close($dbc);
+    echo '<br/><br/><br/>data 1: '. var_dump($data);
+    
+    echo var_dump($row);
+    /*
+    array(8) { 
+        ["userID"]=> string(3) "106" 
+        [0]=> string(2) "35" 
+        [1]=> string(2) "45" 
+        [2]=> string(2) "20" 
+        [3]=> string(2) "35" 
+        [4]=> string(2) "45" 
+        [5]=> string(2) "50" 
+        [6]=> string(1) "0" }
+    */
+    echo '<br/>prev avail bal is: '.$data[1];
+    
 
 ?>
 

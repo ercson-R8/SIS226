@@ -100,7 +100,9 @@
                     $quantity_release = 0;
                     $balance_stock = $data['balance_stock'];
                     // deduct quantity from the available balance 
-                    $balance_available = $data['balance_available'] - $data['quantity'];
+                    // $balance_available = $data['balance_available'] - $data['quantity']; 
+                    // the line above will be moved to Authorize Request Function
+                    $balance_available = $data['balance_available'];
                     $date_process = date("Y-m-d"); 
                     
                     $query = "INSERT INTO stock ( transaction_id, item_number, user_id,

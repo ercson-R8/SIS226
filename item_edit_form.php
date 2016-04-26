@@ -169,12 +169,8 @@
         // hidden field
         document.forms["item_edit"]["data[item_numberPrev]"].value = data[7];
     }
-    
-    
-    
     // call item_edit.php and pass the data 
     var request;
-
     // Bind to the submit event of our form
     $("#item_edit").submit(function(event){
         
@@ -244,7 +240,6 @@
         }
     });
 
-     
 </script>
     
 <!-- verify if current user is allowed to use this feature -->
