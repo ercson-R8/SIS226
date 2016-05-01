@@ -10,7 +10,7 @@
     if (!session_start()){
         session_start();
     }
-    echo var_dump($GLOBALS);
+    //echo var_dump($GLOBALS);
     /*
         array(6) { 
             ["_GET"]=> array(0) { } 
@@ -88,7 +88,7 @@
                     $last_id = mysqli_insert_id($dbc);
                     $r = mysqli_stmt_affected_rows($stmt);
 
-                    echo"<br/>trxn: ".$r.' last id: '.$last_id;
+                   // echo"<br/>trxn: ".$r.' last id: '.$last_id;
                 }
                 // update the stock table/card
                 if (true){

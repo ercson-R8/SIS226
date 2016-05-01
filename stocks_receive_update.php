@@ -5,7 +5,7 @@
     if (!session_start()){
         session_start();
     }
-    echo var_dump($_POST);
+    //echo var_dump($_POST);
 
     if (isset($_POST['stocksReceiveConfirm'])) {         
         if(true){
@@ -28,8 +28,8 @@
                 $data['password']      = $row['password'];
                 $data['rights']      = $row['rights'];
             
-            echo "<br/>suppliedPassword=".$data['suppliedPassword'];
-            echo "<br/>password=".$data['password']; 
+            //echo "<br/>suppliedPassword=".$data['suppliedPassword'];
+           // echo "<br/>password=".$data['password']; 
 
             // verify supplied with stored password
             if ((password_verify($data['suppliedPassword'], $data['password']))){//($data['suppliedPassword']==$data['password']){ // ( $data['password'] == $suppliedPassword) 
@@ -65,7 +65,7 @@
                     $last_id = mysqli_insert_id($dbc);
                     $r = mysqli_stmt_affected_rows($stmt);
 
-                    echo"<br/>trxn: ".$r.' last id: '.$last_id;
+                    //echo"<br/>trxn: ".$r.' last id: '.$last_id;
                 } // end add transaction 
                 // update the stock table/card
                 if (true){
@@ -103,7 +103,7 @@
             }else{
                 $r = 0;
                 $s = "Location: stocks_receive_form.php?i=". $data['itemNumber']."&s=".$r;
-                echo $s;
+                //echo $s;
                 header($s);
                 exit;
             }            
