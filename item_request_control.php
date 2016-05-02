@@ -4,7 +4,8 @@
 
 	$msg="";
 
-	$item_number = $_POST['rq_item'];
+	$rq_item_name = $_POST['rq_item_name'];
+	$rq_description = $_POST['rq_description'];
 	$quantity = $_POST['rq_quantity'];
 	$rq_by = $_POST['rq_by'];
 	$rq_date = date("Y-m-d G:i:s");
@@ -12,8 +13,8 @@
 
 	if ( isset($_POST['send_request']) ) 
 	{			
-		$q_insert = "INSERT INTO item_request (item_number,quantity,rq_by,rq_date,status) 
-					 VALUES ( '$item_number','$quantity','$rq_by','$rq_date','$status') ";
+		$q_insert = "INSERT INTO item_request (item_name, description,quantity,rq_by,rq_date,status) 
+					 VALUES ( '$rq_item_name', '$rq_description' ,'$quantity','$rq_by','$rq_date','$status') ";
 		$result_q = mysqli_query($dbc, $q_insert);
 		
 

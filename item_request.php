@@ -6,7 +6,8 @@
 	<div id="page-wrapper">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Request for an Item</h1>
+				<h1 class="page-header">Request for New Item</h1>
+				<p class="help-block">Request for Item not yet listed in stock.</p>
 			</div><!-- /.col-lg-12 -->
 		</div><!-- /.row -->
 		<div class="row">
@@ -18,14 +19,27 @@
 			<div class="col-lg-5">
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						Item Request Form
+						New Item Request Form
 					</div>
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
 								<form id="user-add" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" role="form">
 									<div class="form-group">
-										<?php require_once('item_select_request.php'); ?>
+										<?php //require_once('item_select_request.php'); ?>
+										<label>
+											Item Name
+											<span class="asteriskField text-danger">*</span>
+										</label>
+										<input type="text" name="rq_item_name" class="form-control" placeholder="Item Name" required>
+									</div>
+									<div class="form-group">
+										<?php //require_once('item_select_request.php'); ?>
+										<label>
+											Item Description
+											<span class="asteriskField text-danger">*</span>
+										</label>
+										<textarea name="rq_description" class="form-control" placeholder="Item Description" row="5"></textarea> 
 									</div>
 									<div class="form-group">
 										<label>
@@ -53,7 +67,7 @@
 			<div class="col-lg-7">
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						Item List
+						Stock List
 					</div>
 					<div class="panel-body">
 						<div class="row">

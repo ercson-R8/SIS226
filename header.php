@@ -86,9 +86,18 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="item_requisition.php">
-                                <i class="fa fa-pencil-square-o fa-fw"></i>Requisitions
+                             <a href="#"><i class="fa fa-pencil-square-o fa-fw"></i> Requisitions<span class="fa arrow"></span></a>
+                             <ul class="nav nav-second-level">
+
+                                <li>
+                                    <a href="item_requisition.php">New Item
                             </a>
+                                </li>
+                                <li>
+                                    <a href="stock_requisition.php">Item from Stock</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
                         <li>
                              <a href="#"><i class="fa fa-list-alt fa-fw"></i> Items<span class="fa arrow"></span></a>

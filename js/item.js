@@ -12,11 +12,17 @@ $(function(){
         iDisplayLength: 25
     });
 
+    //If Item not on list
+    $('select[name="rq_item"]').on('change', function() {
+        var _this = this;
+        alert( _this.value ); // or $(this).val()
+    });
+
     var btn_reject = $('input[name="rq_reject"]');
 
     btn_reject.on('click',function(){
 
-        var _this = $(this);
+        var _this = this;
         var rq_id = _this.siblings('input[name="rq_id"]').val();
         $.ajax({
                 type: "GET",
