@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body">
           Are you sure you want to delete this record?<br>
-          Name: <?php echo $row['first_name'] . $row['last_name']; ?><br>
+          Name: <?php echo $row['first_name'] .' '. $row['last_name']; ?><br>
           Role: <?php echo get_role( $row['rights'] ); ?>
         </div>
         <div class="modal-footer">
