@@ -116,13 +116,13 @@
                 mysqli_stmt_close($stmt);
                 mysqli_close($dbc);
                 //return s=t or status is success; parameters: item+status
-                $s = "Location: stocks_issue_form.php?i=".$transaction_id."&s=".$r;
+                $s = "Location: stocks_issue_form.php?i=".$data['transaction_id']."&s=".$r;
                 header($s);
                 exit;
             
             }else{
                 
-                $s = "Location: stocks_issue_form.php?i=". $transaction_id."&s=".$r;
+                $s = "Location: stocks_issue_form.php?i=". $data['transaction_id']."&s=".$r;
                 header($s);
                 exit;
             }

@@ -33,7 +33,7 @@
                                                         <i class="fa  fa-user fa-3x"></i>
                                                     </div>
                                                     <div class="col-xs-9 text-right">
-                                                        <div class="medium"><span id="Requester">Name</span></div>
+                                                        <div class="medium"><span id="Requester"></span></div>
                                                         <br/>
                                                         <div>Requester</div>
                                                     </div>
@@ -221,14 +221,14 @@
 <script>
     var data = <?php echo json_encode($data); ?>;
     // populate the span ids...
-    if (!data['disableControls']){
-        document.getElementById("authorizer").innerHTML = data['aut_first_name']+' '+data['aut_last_name'];
-        document.getElementById("quantity").innerHTML = data['quantity'];
-        document.getElementById("itemName").innerHTML = data['item_name']+':'+data['item_number'];
-        document.getElementById("remarks").innerHTML = data['remarks'];
-        document.getElementById("Requester").innerHTML = data['req_first_name']+' '+data['req_last_name'];
-        document.getElementById("stockIssueStatus").innerHTML = data['status'];
-        
+    document.getElementById("authorizer").innerHTML = data['aut_first_name']+' '+data['aut_last_name'];
+    document.getElementById("quantity").innerHTML = data['quantity'];
+    document.getElementById("itemName").innerHTML = data['item_name']+':'+data['item_number'];
+    document.getElementById("remarks").innerHTML = data['remarks'];
+    document.getElementById("Requester").innerHTML = data['req_first_name']+' '+data['req_last_name'];
+    document.getElementById("stockIssueStatus").innerHTML = data['status'];
+    
+    if (!data['disableControls']){        
         document.forms["stocksIssue"]["transaction_id"].value = data['transaction_id'];
         document.forms["stocksIssue"]["quantity"].value = data['quantity'];
         document.forms["stocksIssue"]["remarks_store_manager"].value = "";
@@ -237,7 +237,6 @@
         document.getElementById("cancel").innerHTML = "Home";
         document.forms["stocksIssue"]["remarks_store_manager"].disabled = true;
         document.forms["stocksIssue"]["password"].disabled = true;
-        document.getElementById("stockIssueStatus").innerHTML = data['status'];
     }
     
     function hashPassword(){

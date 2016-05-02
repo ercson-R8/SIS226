@@ -23,18 +23,19 @@ if (!session_start()){
     }
 
     if(true) {
-        require_once('mysqli_connect.php');     
-        // Create a query for the database
-        $query ="SELECT * FROM stock GROUP BY item_number ORDER BY item_number DESC";
-                
-        // Get a response from the database by sending the connection
-        // and the query
-        $response = @mysqli_query($dbc, $query);
-        // If the query executed properly, proceed
-        // stock_id	transaction_id	item_number	user_id	quantity_received	
-        // quantity_release			date_process	
+        $q = "SELECT * FROM item";
+        $r = @mysqli_query($dbc, $q);
+        $items = [];    // where the all item numbers and item names will be stored 
+        $i = 0;         // current total number of items
+        if ($r){
+            while( $data = mysqli_fetch_array($r) ){
+                $items[$i] = [$data['item_number'], $data['name']];
+                $i += 1;
+            }
+        }
+	
 
-        if($response){
+        if(true){
             echo '
             <thead>
                 <tr>
@@ -47,26 +48,20 @@ if (!session_start()){
             </thead>
             <tbody>';
 
-            // mysqli_fetch_array will return a row of data from the query
-            // until no further data is available
-
-            while($row = mysqli_fetch_array($response)){
-                $i= $row['item_number'];
-                $item = queryDb('item', 'item_number',$i);// use to fetch the item info
-                $data['itemName']           = $item['name']; 
-                
-                
-                
+            $j = 0;
+            while($j < $i){
+                // [i][0] is the item number [i][1] is the item name
+                $row = queryDb( 'stock', 'item_number',$items[$j][0], 'ORDER BY stock_id DESC LIMIT 1');
                 echo '<tr class="center "><td>' . 
-                '<a href="item_history.php?i='.$row['item_number'].'" class="btn btn-xs btn-primary">
+                '<a href="item_history.php?i='.$items[$j][0].'" class="btn btn-xs btn-primary">
                     <span class="fa fa-history"></span>
                 </a>&nbsp;'.
-                $data['itemName']           . '</td><td class="center ">' .
+                $items[$j][1]                  . '</td><td class="center ">' .
                 $row['item_number']         . '</td><td class="center">' . 
                 $row['balance_available']   . '</td><td class="center">' .
                 $row['balance_stock']       . '</td class="center">' .
-
                 '</tr>';
+                $j += 1;
             }
             echo '</tbody> </table> </div>';  
             }else {

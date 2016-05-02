@@ -33,16 +33,35 @@
 if(true) {
         require_once('mysqli_connect.php');     
         // Create a query for the database
-        $query ="SELECT * FROM stock GROUP BY item_number ORDER BY item_number DESC";
-                
-        // Get a response from the database by sending the connection
-        // and the query
-        $response = @mysqli_query($dbc, $query);
-        // If the query executed properly, proceed
-        // stock_id	transaction_id	item_number	user_id	quantity_received	
-        // quantity_release			date_process	
+        // $query ="SELECT * FROM stock GROUP BY item_number ORDER BY item_number DESC";
+        $q = "SELECT * FROM item";
+        
+        $r = @mysqli_query($dbc, $q);
+        $items = [];
+        $i = 0;
+        if ($r){
+            while( $data = mysqli_fetch_array($r) ){
+                $items[$i] = [$data['item_number'], $data['name']];
+                echo'<br/>  '.$data['item_number'].' name: '.$data['name'];
+                $i += 1;
+            }
+        }
+        /* array(2) { 
+                [0]=> array(2) { 
+                    [0]=> string(10) "XX-CM-0001" 
+                    [1]=> string(12) "Test Item 01" 
+                } 
+                [1]=> array(2) { 
+                    [0]=> string(10) "EL-CM-0001" 
+                    [1]=> string(27) "Electronic Fan Capacitor 01" } 
+            } 
+        */
+        echo '<br/><br/>$i = '.$i.'<br/><br/>';
+        echo '<br/><br/>'.var_dump($items);
+        echo '<br/><br/>';
+        echo $items[0][0];
 
-        if($response){
+        if(true){
 
             echo '<br/><br/><table>';
             echo '
@@ -56,26 +75,22 @@ if(true) {
                 </tr>
             </thead>
             <tbody>';
-            $j = 1;
-            while($row = mysqli_fetch_array($response)){
-                
-                $i= $row['item_number'];
-                $item = queryDb('item', 'item_number',$i);// use to fetch the item info
-                $data['itemName']           = $item['name']; 
-                
-                
-                
+            $j = 0;
+            echo $items[$j][0].'<br/>';
+            while( $j < $i){
+                // SELECT * FROM `stock` WHERE item_number = 'el-cm-0001' ORDER BY stock_id DESC LIMIT 1
+                // [i][0] is the item number [i][1] is the item name
+                $row = queryDb( 'stock', 'item_number',$items[$j][0], 'ORDER BY stock_id DESC LIMIT 1');
                 echo '<tr class="center "><td>' . 
-                '<a href="item_history.php?i='.$row['item_number'].'" class="btn btn-xs btn-primary">
+                '<a href="item_history.php?i='.$items[$j][0].'" class="btn btn-xs btn-primary">
                     <span class="fa fa-history"></span>
                 </a>&nbsp;'.$j. ' '.
-                $data['itemName']           . '</td><td class="center ">' .
+                $items[$j][1]                . '</td><td class="center ">' .
                 $row['item_number']         . '</td><td class="center">' . 
                 $row['balance_available']   . '</td><td class="center">' .
                 $row['balance_stock']       . '</td class="center">' .
-
-                '</tr>';
-                $j = $j + 1 ;
+                // '</tr>';
+                $j += 1;
             }
             echo '</tbody> </table> </div>';
         }
