@@ -4,29 +4,30 @@
 	require_once( 'mysqli_connect.php' );
 
 	// $query = "SELECT i.name, s.* FROM item i, item_request s WHERE i.item_number = s.item_number";
-	$query = "SELECT * FROM item_request";
+	// $query = "SELECT * FROM item_request";
+    $query ="SELECT t.*, i.* , u.user_id, u.last_name,u.first_name FROM transaction t, item i, user u  WHERE t.item_number = i.item_number AND t.requester = u.user_id";
 	$result = @mysqli_query( $dbc, $query );
 
-	$q_pending="SELECT * FROM item_request WHERE status = '10'";
-	if ($result_p=@mysqli_query($dbc,$q_pending)){
-		// Return the number of rows in result set
-		$count_p=mysqli_num_rows($result_p);
-		mysqli_free_result($result_p);
-	}
+	// $q_pending="SELECT * FROM item_request WHERE status = '10'";
+	// if ($result_p=@mysqli_query($dbc,$q_pending)){
+	// 	// Return the number of rows in result set
+	// 	$count_p=mysqli_num_rows($result_p);
+	// 	mysqli_free_result($result_p);
+	// }
 
-	$q_approved="SELECT * FROM item_request WHERE status = '30'";
-	if ($result_a=@mysqli_query($dbc,$q_approved)){
-		// Return the number of rows in result set
-		$count_a=mysqli_num_rows($result_a);
-		mysqli_free_result($result_a);
-	}
+	// $q_approved="SELECT * FROM item_request WHERE status = '30'";
+	// if ($result_a=@mysqli_query($dbc,$q_approved)){
+	// 	// Return the number of rows in result set
+	// 	$count_a=mysqli_num_rows($result_a);
+	// 	mysqli_free_result($result_a);
+	// }
 
-	$q_reject="SELECT * FROM item_request WHERE status = '20'";
-	if ($result_r=@mysqli_query($dbc,$q_reject)){
-		// Return the number of rows in result set
-		$count_r=mysqli_num_rows($result_r);
-		mysqli_free_result($result_r);
-	}
+	// $q_reject="SELECT * FROM item_request WHERE status = '20'";
+	// if ($result_r=@mysqli_query($dbc,$q_reject)){
+	// 	// Return the number of rows in result set
+	// 	$count_r=mysqli_num_rows($result_r);
+	// 	mysqli_free_result($result_r);
+	// }
 
 ?>
 <div id="page-wrapper">
@@ -48,25 +49,26 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<table class="table table-striped table-bordered table-hover" id="dataTables-requisitions">
+								<table class="table table-striped table-bordered table-hover" id="dataTables-stock-requisitions">
 									<thead>
-										<th>Name</th>
-										<th>Description</th>
+										<th>Item Number</th>
+										<th>Item Name</th>
 										<th>Quantity</th>
 										<th>Requested By</th>
 										<th>Date Requested</th>
 										<th>Status</th>
-										<th>Action</th>
+										<th>Action</th> 
 									</thead>
 									<tbody>
 										<?php while ( $row = $result->fetch_assoc() ) { ?>
 										<tr>
-											<td><?php echo $row['item_name']; ?></td>
-											<td><?php echo $row['description']; ?></td>
+											<td><?php echo $row['item_number']; ?></td>
+											<td><?php echo $row['name']; ?></td>
 											<td><?php echo $row['quantity']; ?></td>
-											<td><?php echo $row['rq_by']; ?></td>
-											<td><?php echo $row['rq_date']; ?></td>
-											<td id="<?php echo $row['status']; ?>"><?php echo request_status($row['status']); ?></td>
+											<td><?php echo $row['first_name'].' '. $row['last_name'];; ?></td>
+											<td><?php echo $row['date_requested']; ?></td>
+											<td><?php echo $row['status']; ?></td>
+											
 											<td>
 												<a href="#" class="btn btn-xs btn-success">
 									                <span class="fa fa-thumbs-up"></span> Grant

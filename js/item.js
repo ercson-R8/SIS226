@@ -12,6 +12,13 @@ $(function(){
         iDisplayLength: 25
     });
 
+    $('#dataTables-stock-requisitions').DataTable({
+        responsive: true,
+        columnDefs: [{ orderable: false, targets: -1 }],
+        order: [[ 4, "asc" ]],
+        iDisplayLength: 25
+    });
+
     //If Item not on list
     $('select[name="rq_item"]').on('change', function() {
         var _this = this;
