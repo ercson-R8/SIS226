@@ -121,9 +121,11 @@
                                 <li>
                                     <a href="stocks_request_search.php" ><i class="fa fa-shopping-cart fa-fw"></i>Request Stocks</a>
                                 </li>
+                                <!-- this function will move to
                                 <li>
                                     <a href="stocks_authorize.php"><i class="fa fa-legal fa-fw"></i>Authorize Stocks Req.</a>
                                 </li>
+                                -->
                                 <li>
                                     <a href="stocks_issue_search.php"><i class="fa fa-key fa-fw"></i>Issue Stocks</a>
                                 </li>
