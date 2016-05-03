@@ -65,7 +65,7 @@
 											<td><?php echo $row['item_number']; ?></td>
 											<td><?php echo $row['name']; ?></td>
 											<td><?php echo $row['quantity']; ?></td>
-											<td><?php echo $row['first_name'].' '. $row['last_name'];; ?></td>
+											<td><?php echo $row['first_name'].' '. $row['last_name']; ?></td>
 											<td><?php echo $row['date_requested']; ?></td>
 											<td><?php echo $row['status']; ?></td>
 											
