@@ -1,4 +1,5 @@
 <?php
+	require_once('login.check.php');
 	require_once('global_function.php');
 	require_once('mysqli_connect.php');
 
@@ -6,7 +7,7 @@
 	$middlename = isset($_POST['middle_name']) ? $_POST['middle_name'] : '';
 	$lastname = isset($_POST['last_name']) ? $_POST['last_name'] : '';
 	$email = isset($_POST['email']) ? $_POST['email'] : '';
-	$user_role = isset($_POST['user_role']) ? $_POST['user_role'] : '';
+	$user_role = isset($_POST['user_role']) ? $_POST['user_role'] : $u_role;
 
 	$password = isset($_POST['password']) ? $_POST['password'] : '';
 	$hashedPassword = hashPassword( $password );

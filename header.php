@@ -109,12 +109,16 @@
                                 <li>
                                     <a href="item_request.php">Request for New Item</a>
                                 </li>
+
+                                <?php if ( $u_role == '3' || $u_role == '4' ) { ?>
                                 <li>
                                     <a href="item_add.php">Add New Items</a>
                                 </li>
                                 <li>
                                     <a href="item_view.php">View Items</a>
                                 </li>
+                                <?php } ?>
+
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

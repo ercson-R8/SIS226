@@ -42,7 +42,7 @@
 				return "Department Head";
 				break;
 			
-			default:
+			case '1':
 				return "Staff";
 				break;
 		}
