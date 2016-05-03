@@ -9,6 +9,7 @@
     while ( $row = $result->fetch_assoc()) 
     { 
 		$fullname = $row['first_name'] . ' ' . $row['last_name'];
+        $u_role = $row['rights'];
 	} 
     
     if( !isset(  $username ) ){
