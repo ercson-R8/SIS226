@@ -49,7 +49,7 @@
 										</label>
 										<input type="text" name="last_name" class="form-control" value="<?php echo $row['last_name']; ?>" required >
 									</div>
-									<!-- TODO: only show if user role is master administrator -->
+                        			<?php if ($u_role == '4') { ?>
 									<div class="form-group">
 										<label>Role</label>
 										<select name="user_role" class="form-control">
@@ -63,6 +63,7 @@
 
 										</select>
 									</div>
+									<?php } ?>
 									<div class="row ">
 										<div class="col-lg-12 text-right">
 											<button id="user_update" type="submit" name="user_update" class="btn btn-primary ">Update Info</button>

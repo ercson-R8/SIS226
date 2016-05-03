@@ -85,7 +85,7 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <?php if ($u_role == '2') { ?>
+                        <?php if ( $u_role == '2' || $u_role == '4' ) { ?>
                             
                         <li>
                              <a href="#"><i class="fa fa-pencil-square-o fa-fw"></i> Requisitions<span class="fa arrow"></span></a>
@@ -142,6 +142,8 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <?php if ( $u_role == '4' ) { ?>
+
                         <li>
                              <a href="#"><i class="fa fa-users fa-fw"></i> Users<span class="fa arrow"></span></a>
                              <ul class="nav nav-second-level">
@@ -154,6 +156,7 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <?php } ?>
                         <!-- End SIS Navigation List-->
 
                     </ul>
