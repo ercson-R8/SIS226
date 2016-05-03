@@ -8,26 +8,26 @@
     $query ="SELECT t.*, i.* , u.user_id, u.last_name,u.first_name FROM transaction t, item i, user u  WHERE t.item_number = i.item_number AND t.requester = u.user_id";
 	$result = @mysqli_query( $dbc, $query );
 
-	// $q_pending="SELECT * FROM item_request WHERE status = '10'";
-	// if ($result_p=@mysqli_query($dbc,$q_pending)){
-	// 	// Return the number of rows in result set
-	// 	$count_p=mysqli_num_rows($result_p);
-	// 	mysqli_free_result($result_p);
-	// }
+	$q_pending="SELECT * FROM transaction WHERE status = 'Pending'";
+	if ($result_p=@mysqli_query($dbc,$q_pending)){
+		// Return the number of rows in result set
+		$count_p=mysqli_num_rows($result_p);
+		mysqli_free_result($result_p);
+	}
 
-	// $q_approved="SELECT * FROM item_request WHERE status = '30'";
-	// if ($result_a=@mysqli_query($dbc,$q_approved)){
-	// 	// Return the number of rows in result set
-	// 	$count_a=mysqli_num_rows($result_a);
-	// 	mysqli_free_result($result_a);
-	// }
+	$q_approved="SELECT * FROM transaction WHERE status = 'Granted'";
+	if ($result_a=@mysqli_query($dbc,$q_approved)){
+		// Return the number of rows in result set
+		$count_a=mysqli_num_rows($result_a);
+		mysqli_free_result($result_a);
+	}
 
-	// $q_reject="SELECT * FROM item_request WHERE status = '20'";
-	// if ($result_r=@mysqli_query($dbc,$q_reject)){
-	// 	// Return the number of rows in result set
-	// 	$count_r=mysqli_num_rows($result_r);
-	// 	mysqli_free_result($result_r);
-	// }
+	$q_reject="SELECT * FROM transaction WHERE status = 'Denied'";
+	if ($result_r=@mysqli_query($dbc,$q_reject)){
+		// Return the number of rows in result set
+		$count_r=mysqli_num_rows($result_r);
+		mysqli_free_result($result_r);
+	}
 
 ?>
 <div id="page-wrapper">
@@ -43,7 +43,7 @@
 						<div class="btn-group pull-right" role="group" aria-label="...">
 						  <button type="button" class="btn btn-warning btn-md">( <?php echo $count_p; ?> ) Pending</button>
 						  <button type="button" class="btn btn-success btn-md">( <?php echo $count_a; ?> ) Granted</button>
-						  <button type="button" class="btn btn-danger btn-md">( <?php echo $count_r; ?> ) Rejected</button>
+						  <button type="button" class="btn btn-danger btn-md">( <?php echo $count_r; ?> ) Denied</button>
 						</div>
 					</div>
 					<div class="panel-body">
@@ -73,7 +73,7 @@
 												<a href="#" class="btn btn-xs btn-success">
 									                <span class="fa fa-thumbs-up"></span> Grant
 									            </a>
-									           <?php include('item_requisition_reject_modal.php'); ?>
+									           <?php include('stock_requisition_deny_modal.php'); ?>
 									        </td>
 										</tr>
 										<?php } mysqli_close( $dbc );?>
