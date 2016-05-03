@@ -44,6 +44,25 @@ $(function(){
             });
     });
 
+    var btn_grant = $('input[name="rq_grant"]');
+
+    btn_grant.on('click',function(){
+
+        var _this = $(this);
+        var rq_id = _this.siblings('input[name="rq_id"]').val();
+        $.ajax({
+                type: "GET",
+                url: "item_requisition_grant.php?rq_id=" + rq_id,
+                data: {
+                    rq_id: rq_id
+                },
+                success: function( data ) {
+                    window.setTimeout('location.reload()', 500);
+
+                }
+            });
+    });
+
     var btn_deny = $('input[name="deny"]');
 
     btn_deny.on('click', function(){

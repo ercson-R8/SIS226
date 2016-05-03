@@ -67,9 +67,7 @@
 											<td><?php echo $row['rq_date']; ?></td>
 											<td id="<?php echo $row['status']; ?>"><?php echo request_status($row['status']); ?></td>
 											<td>
-												<a href="#" class="btn btn-xs btn-success">
-									                <span class="fa fa-thumbs-up"></span> Grant
-									            </a>
+									           <?php include('item_requisition_grant_modal.php'); ?>
 									           <?php include('item_requisition_reject_modal.php'); ?>
 									        </td>
 										</tr>
