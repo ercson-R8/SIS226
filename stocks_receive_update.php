@@ -47,8 +47,8 @@
                     // date_release	= this is auto NULL
                     $store_manager	= $data['userID']; // this should be replaced with the global session user id
                     $remarks_store_manager	= $data['remarks_store_manager'];
-                    $date_authorized	= date("Y-m-d"); 
-                    $date_add = date("Y-m-d");
+                    $date_authorized	= date("Y-m-d G:i:s"); 
+                    $date_add = date("Y-m-d G:i:s");
                     // echo '<br/><br/>';
                     // echo var_dump($data);
                     require('mysqli_connect.php');
@@ -77,7 +77,7 @@
                     $quantity_release = 0;
                     $balance_stock = $data['balance_stock'] + $data['quantity'];
                     $balance_available = $data['balance_available']+ $data['quantity'];
-                    $date_process = date("Y-m-d"); 
+                    $date_process = date("Y-m-d G:i:s"); 
                     
                     $query = "INSERT INTO stock ( transaction_id, item_number, user_id,
                                                         quantity_received, quantity_release, balance_stock,

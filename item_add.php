@@ -61,8 +61,8 @@ if (true) {
                 // date_release	= this is auto NULL
                 $store_manager	= $_SESSION['user_id']; // this should be replaced with the global session user id $_SESSION["userID"];
                 $remarks_store_manager	= 'Initial addition of an inventory item';
-                $date_authorized	= date("Y-m-d");
-                $date_add = date("Y-m-d");
+                $date_authorized	= date("Y-m-d G:i:s");;
+                $date_add = date("Y-m-d G:i:s");;
 
                 $query = "INSERT INTO transaction ( transaction_type, authorizer, requester,
                                                 	item_number, quantity, status,
@@ -98,7 +98,7 @@ if (true) {
                 $quantity_release = 0;
                 $balance_stock = 0;
                 $balance_available = 0;
-                $date_process = date("Y-m-d"); 
+                $date_process = date("Y-m-d G:i:s");; 
                 
                 $query = "INSERT INTO stock ( transaction_id, item_number, user_id,
                                                 	quantity_received, quantity_release, balance_stock,

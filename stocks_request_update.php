@@ -70,7 +70,7 @@
                     $store_manager	= $data['userID']; // this should be replaced with the global session user id
                    
                     $remarks_store_manager	= "";
-                    $date_requested = date("Y-m-d");
+                    $date_requested = date("Y-m-d G:i:s");
                     $date_authorized	= null; 
                     $date_add = null;
 
@@ -103,7 +103,7 @@
                     // $balance_available = $data['balance_available'] - $data['quantity']; 
                     // the line above will be moved to Authorize Request Function
                     $balance_available = $data['balance_available'];
-                    $date_process = date("Y-m-d"); 
+                    $date_process = date("Y-m-d G:i:s");
                     
                     $query = "INSERT INTO stock ( transaction_id, item_number, user_id,
                                                         quantity_received, quantity_release, balance_stock,

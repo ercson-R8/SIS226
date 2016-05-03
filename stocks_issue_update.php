@@ -51,7 +51,7 @@
                     $store_manager = $data['userID'];
                     $remarks_store_manager = $data['remarks_store_manager'];
                     $date_authorized = $row['date_authorized'];
-                    $date_release = date("Y-m-d");
+                    $date_release = date("Y-m-d G:i:s");
                     $date_requested = $row['date_requested'];
                     
                     // fetch the prior trxn which contains the recent/accurate available/stock balance
@@ -98,7 +98,7 @@
                     $balance_stock = (int)$prevStoclBalance - $quantity_release;
                     // the available balance will remain the same
                     $balance_available = $prevAvailBalance;
-                    $date_process = date("Y-m-d");
+                    $date_process = date("Y-m-d G:i:s");
                     
                     $query = "INSERT INTO stock ( transaction_id, item_number, user_id,
                                                         quantity_received, quantity_release, balance_stock,
