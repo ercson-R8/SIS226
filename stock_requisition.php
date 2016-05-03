@@ -70,9 +70,7 @@
 											<td><?php echo $row['status']; ?></td>
 											
 											<td>
-												<a href="#" class="btn btn-xs btn-success">
-									                <span class="fa fa-thumbs-up"></span> Grant
-									            </a>
+									           <?php include('stock_requisition_grant_modal.php'); ?>
 									           <?php include('stock_requisition_deny_modal.php'); ?>
 									        </td>
 										</tr>

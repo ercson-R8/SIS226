@@ -45,7 +45,6 @@ $(function(){
     });
 
     var btn_grant = $('input[name="rq_grant"]');
-
     btn_grant.on('click',function(){
 
         var _this = $(this);
@@ -63,14 +62,32 @@ $(function(){
             });
     });
 
-    var btn_deny = $('input[name="deny"]');
 
+    //Stock Requisition Actions
+    var btn_deny = $('input[name="deny"]');
     btn_deny.on('click', function(){
         var _this = $(this);
         var transaction_id = _this.siblings('input[name="transaction_id"]').val();
         $.ajax({
             type: "GET",
             url: "stock_requisition_deny.php?transaction_id=" + transaction_id,
+            data: {
+                transaction_id: transaction_id
+            },
+            success: function( data ) {
+                window.setTimeout('location.reload()', 500);
+
+            }
+        });
+    });
+
+    var btn_grant = $('input[name="s_grant"]');
+    btn_grant.on('click', function(){
+        var _this = $(this);
+        var transaction_id = _this.siblings('input[name="transaction_id"]').val();
+        $.ajax({
+            type: "GET",
+            url: "stock_requisition_grant.php?transaction_id=" + transaction_id,
             data: {
                 transaction_id: transaction_id
             },
