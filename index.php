@@ -51,7 +51,10 @@
                                             <div class="col-lg-12">
                                                 <div class="text-center">
                                                     <a href="forgot_form.php" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                                    &nbsp;
+                                                    <a href="survey.html" target="_blank" tabindex="6" class="forgot-password">Take a Survey</a>
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
