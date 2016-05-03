@@ -133,6 +133,7 @@
                                     <a href="stocks_authorize.php"><i class="fa fa-legal fa-fw"></i>Authorize Stocks Req.</a>
                                 </li>
                                 -->
+                                <?php if ( $u_role == '3' || $u_role == '4' ) { ?>
                                 <li>
                                     <a href="stocks_issue_search.php"><i class="fa fa-key fa-fw"></i>Issue Stocks</a>
                                 </li>
@@ -142,6 +143,7 @@
                                 <li>
                                     <a href="stocks_view.php"><i class="fa fa-search fa-fw"></i>Search/View Stocks</a>
                                 </li>
+                                <?php } ?>
 
                             </ul>
                             <!-- /.nav-second-level -->
