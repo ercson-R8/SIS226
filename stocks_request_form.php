@@ -145,7 +145,7 @@
                                                 <button type="submit" name="btnstocksRequest" class="btn btn-primary btn-lg btn-block"  >
                                                     Confirm
                                                 </button>
-                                                <a href="index.php" id="cancel" class="btn btn-warning btn-lg btn-block">Cancel </a>
+                                                <a href="stocks_request_search.php" id="cancel" class="btn btn-warning btn-lg btn-block">Cancel </a>
                                             </div>
                                             <div class="col-lg-1">
                                             </div>
