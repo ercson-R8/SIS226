@@ -92,11 +92,11 @@
                              <ul class="nav nav-second-level">
 
                                 <li>
-                                    <a href="item_requisition.php">New Item
+                                    <a href="item_requisition.php">Item
                             </a>
                                 </li>
                                 <li>
-                                    <a href="stock_requisition.php">Item from Stock</a>
+                                    <a href="stock_requisition.php">Stock</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
