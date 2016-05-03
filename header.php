@@ -85,6 +85,10 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="user_requisition.php"><i class="fa fa-list fa-fw"></i> My Requisition</a>
+                        </li>
+
                         <?php if ( $u_role == '2' || $u_role == '4' ) { ?>
                             
                         <li>

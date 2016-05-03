@@ -63,7 +63,16 @@
 											<td><?php echo $row['item_name']; ?></td>
 											<td><?php echo $row['description']; ?></td>
 											<td><?php echo $row['quantity']; ?></td>
-											<td><?php echo $row['rq_by']; ?></td>
+											<td><?php 	
+												$user_id = $row['rq_by'];
+												$q_user = "SELECT * FROM user WHERE user_id = '$user_id'";
+											    $result_q_user =  @mysqli_query($dbc, $q_user);
+											    while ( $r = $result_q_user->fetch_assoc()) 
+											    { 
+													$fullname = $r['first_name'] . ' ' . $r['last_name'];
+												}  ?>
+
+												<?php echo $fullname; ?></td>
 											<td><?php echo $row['rq_date']; ?></td>
 											<td id="<?php echo $row['status']; ?>"><?php echo request_status($row['status']); ?></td>
 											<td>

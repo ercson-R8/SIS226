@@ -10,6 +10,7 @@
     { 
 		$fullname = $row['first_name'] . ' ' . $row['last_name'];
         $u_role = $row['rights'];
+        $user_id = $row['user_id'];
 	} 
     
     if( !isset(  $username ) ){

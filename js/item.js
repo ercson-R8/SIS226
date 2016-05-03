@@ -12,6 +12,13 @@ $(function(){
         iDisplayLength: 25
     });
 
+    $('#dataTables-requisitions-user').DataTable({
+        responsive: true,
+        // columnDefs: [{ orderable: false, targets: -1 }],
+        order: [[ 4, "asc" ]],
+        iDisplayLength: 10
+    });
+
     $('#dataTables-stock-requisitions').DataTable({
         responsive: true,
         columnDefs: [{ orderable: false, targets: -1 }],

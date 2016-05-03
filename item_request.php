@@ -47,7 +47,8 @@
 										<input type="number" name="rq_quantity" class="form-control" min="1" placeholder="Ex: 10" required>
 									</div>
 									<div class="form-group">
-										<input type="hidden" name="rq_by" class="form-control" value="<?php echo $fullname; ?>" readonly>
+										
+										<input type="hidden" name="rq_by" class="form-control" value="<?php echo $_SESSION['user_id']; ?>" readonly>
 									</div>
 									<div class="row">
 										<div class="col-lg-4 col-lg-offset-8">
