@@ -8,7 +8,7 @@ $(function(){
 	$('#dataTables-requisitions').DataTable({
         responsive: true,
         columnDefs: [{ orderable: false, targets: -1 }],
-        order: [[ 3, "asc" ]],
+        order: [[ 5, "desc" ]],
         iDisplayLength: 25
     });
 
@@ -21,7 +21,7 @@ $(function(){
     
     //If Item not on list
     $('select[name="rq_item"]').on('change', function() {
-        var _this = this;
+        var _this = $(this);
         alert( _this.value ); // or $(this).val()
     });
 
@@ -29,7 +29,7 @@ $(function(){
 
     btn_reject.on('click',function(){
 
-        var _this = this;
+        var _this = $(this);
         var rq_id = _this.siblings('input[name="rq_id"]').val();
         $.ajax({
                 type: "GET",

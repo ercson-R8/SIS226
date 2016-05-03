@@ -3,7 +3,6 @@
 	require_once('global_function.php');
 	require_once( 'mysqli_connect.php' );
 
-	// $query = "SELECT i.name, s.* FROM item i, item_request s WHERE i.item_number = s.item_number";
 	$query = "SELECT * FROM item_request";
 	$result = @mysqli_query( $dbc, $query );
 
@@ -14,15 +13,15 @@
 		mysqli_free_result($result_p);
 	}
 
-	$q_approved="SELECT * FROM item_request WHERE status = '30'";
-	if ($result_a=@mysqli_query($dbc,$q_approved)){
+	$q_granted="SELECT * FROM item_request WHERE status = '50'";
+	if ($result_a=@mysqli_query($dbc,$q_granted)){
 		// Return the number of rows in result set
 		$count_a=mysqli_num_rows($result_a);
 		mysqli_free_result($result_a);
 	}
 
-	$q_reject="SELECT * FROM item_request WHERE status = '20'";
-	if ($result_r=@mysqli_query($dbc,$q_reject)){
+	$q_denied="SELECT * FROM item_request WHERE status = '40'";
+	if ($result_r=@mysqli_query($dbc,$q_denied)){
 		// Return the number of rows in result set
 		$count_r=mysqli_num_rows($result_r);
 		mysqli_free_result($result_r);
@@ -42,7 +41,7 @@
 						<div class="btn-group pull-right" role="group" aria-label="...">
 						  <button type="button" class="btn btn-warning btn-md">( <?php echo $count_p; ?> ) Pending</button>
 						  <button type="button" class="btn btn-success btn-md">( <?php echo $count_a; ?> ) Granted</button>
-						  <button type="button" class="btn btn-danger btn-md">( <?php echo $count_r; ?> ) Rejected</button>
+						  <button type="button" class="btn btn-danger btn-md">( <?php echo $count_r; ?> ) Denied</button>
 						</div>
 					</div>
 					<div class="panel-body">

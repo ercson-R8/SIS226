@@ -56,6 +56,13 @@
 	function request_status( $status_id )
 	{
 		switch ( $status_id ) {
+			case '50':
+				return "Granted";
+				break;
+			case '40':
+				return "Denied";
+				break;
+
 			case '20':
 				return "Rejected";
 				break;

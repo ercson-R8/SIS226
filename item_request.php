@@ -26,7 +26,6 @@
 							<div class="col-lg-12">
 								<form id="user-add" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" role="form">
 									<div class="form-group">
-										<?php //require_once('item_select_request.php'); ?>
 										<label>
 											Item Name
 											<span class="asteriskField text-danger">*</span>
@@ -34,7 +33,6 @@
 										<input type="text" name="rq_item_name" class="form-control" placeholder="Item Name" required>
 									</div>
 									<div class="form-group">
-										<?php //require_once('item_select_request.php'); ?>
 										<label>
 											Item Description
 											<span class="asteriskField text-danger">*</span>
