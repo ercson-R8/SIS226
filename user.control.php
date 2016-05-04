@@ -30,7 +30,7 @@
 		//SQL insert
 		$q_insert = "INSERT INTO user (first_name,middle_name,last_name,username,password,rights)
 					VALUES ('$firstname','$middlename','$lastname','$email','$hashedPassword','$user_role')";
-		$result_q = mysqli_query($dbc, $q_insert);
+		$result_q = @mysqli_query($dbc, $q_insert);
 
 		if ( $result->num_rows > 0) {
 			$msg =  '<div class="alert alert-danger" role="alert">E-mail entered already registered.</div>';
@@ -57,7 +57,7 @@
 		{
 			
 			$q_update = "UPDATE user SET first_name = '$firstname', middle_name = '$middlename', last_name = '$lastname', rights = '$user_role' WHERE user_id = '$id' ";
-			$result_q = mysqli_query($dbc, $q_update);
+			$result_q = @mysqli_query($dbc, $q_update);
 
 			if ( $result_q ) 
 			{
