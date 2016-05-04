@@ -268,13 +268,3 @@
 <script type="text/javascript" src="js/forms.js"></script> 
     
 <?php include('footer.php'); ?>
-
-<script>
-    var rights = <?php echo json_encode($_SESSION['rights']); ?>;
-    $(document).ready(function(){
-            if (rights != '3'){ // this feature is for Administrators/Store managers only.
-                alert('Not allowed to use this feature!');
-                window.location.assign("landing.php");
-            }
-        });
-</script>
