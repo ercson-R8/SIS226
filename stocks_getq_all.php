@@ -13,14 +13,15 @@ if (!session_start()){
     if(true) {
         require_once('mysqli_connect.php');     
         // Create a query for the database
-        $query ="SELECT item_number,
-                        location,
-                        unit,
-                        supplier,
-                        name,
-                        brand,
-                        description 
-                FROM item"                                    
+        $query ="SELECT item.item_number,
+                        item.location,
+                        item.unit,
+                        item.supplier,
+                        item.name,
+                        item.brand,
+                        item.description,
+                        stock.balance_available
+                FROM item,stock"                                    
                 ;
                 
         // Get a response from the database by sending the connection
@@ -37,6 +38,7 @@ if (!session_start()){
                     <th>Supplier</th>
                     <th>Brand</th>
                     <th>Description</th>
+                    <th>Available Balance</th>
                 </tr>
             </thead>
             <tbody>';
@@ -55,8 +57,8 @@ if (!session_start()){
                 $row['location']        . '</td><td class="center">' . 
                 $row['supplier']        . '</td><td class="center">' .
                 $row['brand']           . '</td><td class="center">' .
-                $row['description']     . '</td class="center">' .
-
+                $row['description']     . '</td class="center"><td class="center">' .
+                $row['balance_available']     . '</td class="center">' .
                 '</tr>';
             }
             echo '</tbody> </table> </div>';  
