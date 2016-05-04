@@ -19,9 +19,8 @@ if (!session_start()){
                         item.supplier,
                         item.name,
                         item.brand,
-                        item.description,
-                        stock.balance_available
-                FROM item,stock"                                    
+                        item.description
+                FROM item"                                    
                 ;
                 
         // Get a response from the database by sending the connection
@@ -32,6 +31,7 @@ if (!session_start()){
             echo '
             <thead>
                 <tr>
+                    <th>&nbsp;</th>
                     <th>Name</th>
                     <th>No.</th>  
                     <th>Loc.</th>  
@@ -47,20 +47,30 @@ if (!session_start()){
             // until no further data is available
 
             while($row = mysqli_fetch_array($response)){
-                
-                echo '<tr class="center "><td>' . 
-                '<a href="stocks_request_form.php?i='.$row['item_number'].'" class="btn btn-xs btn-primary">
+
+                $item_no = $row['item_number'];
+                $q_balance = "SELECT balance_available FROM stock WHERE item_number = '$item_no' ORDER BY date_process DESC LIMIT 1";
+                $r_q_balance = @mysqli_query($dbc, $q_balance);
+                ?>
+                <tr class="center ">
+                <td><a href="stocks_request_form.php?i='.$row['item_number'].'" class="btn btn-xs btn-primary">
                     <span class="fa fa-plus-square"></span>
-                </a>&nbsp;'.
-                $row['name']            . '</td><td class="center ">' .
-                $row['item_number']     . '</td><td class="center">' . 
-                $row['location']        . '</td><td class="center">' . 
-                $row['supplier']        . '</td><td class="center">' .
-                $row['brand']           . '</td><td class="center">' .
-                $row['description']     . '</td class="center"><td class="center">' .
-                $row['balance_available']     . '</td class="center">' .
-                '</tr>';
-            }
+                </a></td>
+                <td><?php echo $row['name']; ?></td>
+                <td class="center "><?php echo $row['item_number'];  ?></td>
+                <td class="center"><?php echo $row['location']; ?> </td>
+                <td class="center"><?php  echo $row['supplier'];  ?></td>
+                <td class="center"><?php echo  $row['brand']; ?></td>
+                <td class="center"><?php echo $row['description']; ?></td class="center">
+                <td class="center">
+                    <?php 
+                        while($row = mysqli_fetch_array($r_q_balance)){
+                            echo $row['balance_available'];
+                        }
+                    ?>
+                </td>
+                </tr>
+           <?php }
             echo '</tbody> </table> </div>';  
             }else {
                 echo "Couldn't issue database query<br />";
