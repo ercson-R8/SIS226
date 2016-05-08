@@ -54,6 +54,7 @@
         $('#dataTables-items').DataTable({
                 responsive: true
         });
+        $('[data-toggle="tooltip"]').tooltip();   
     });
 </script>
     

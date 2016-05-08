@@ -33,7 +33,7 @@
                 
                 // produce the table
                 echo '<tr class="center "><td>' . 
-                '<a href="stocks_issue_form.php?i='.$row['transaction_id'].'" class="btn btn-xs btn-primary">
+                '<a href="stocks_issue_form.php?i='.$row['transaction_id'].'" data-toggle="tooltip" data-placement="right" title="Issue stocks for this request!"class="btn btn-xs btn-primary">
                     <span class="fa fa-unlock-alt"></span>
                 </a> &nbsp;'                                                .
                 $row['item_number']                                         . '</td><td class="center">' .

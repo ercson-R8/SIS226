@@ -32,7 +32,7 @@
 
 	      	<tr class="odd gradeX">
 		        <td>
-		            <a href="user_edit.php?action=edit<?php echo $params; ?>" class="btn btn-xs btn-primary">
+		            <a href="user_edit.php?action=edit<?php echo $params; ?>" data-toggle="tooltip" data-placement="right" title="Edit this user!"class="btn btn-xs btn-primary">
 		                <span class="fa fa-edit"></span>
 		            </a>
 		          	<?php include('user_delete_modal.php'); ?>

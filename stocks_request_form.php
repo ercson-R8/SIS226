@@ -130,7 +130,7 @@
                                                             <option value="">Department Head</option>
                                                     <?php
                                                         require_once('mysqli_connect.php');     
-                                                        $query ="SELECT * FROM user WHERE rights=\"3\"";
+                                                        $query ="SELECT * FROM user WHERE rights=\"2\"";
                                                         $response = @mysqli_query($dbc, $query);
                                                         while($row = mysqli_fetch_array($response)){
                                                             echo'<option value="'.$row['user_id'].'">'. 
@@ -264,7 +264,7 @@
         
         
 </script>
-<script type="text/javascript" src="js/sha512.js"></script> 
-<script type="text/javascript" src="js/forms.js"></script> 
+
     
 <?php include('footer.php'); ?>
+

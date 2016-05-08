@@ -259,5 +259,6 @@
                 alert('Not allowed to use this feature!');
                 window.location.assign("stocks_view.php");
             }
+                     
         });
 </script>

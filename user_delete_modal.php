@@ -1,4 +1,4 @@
-<a id="<?php echo $row['user_id']; ?>" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deleteUserModal-<?php echo $row['user_id']; ?>" data-whatever="@getbootstrap">
+<a id="<?php echo $row['user_id']; ?>"data-toggle="tooltip" data-placement="right" title="Remove this user!" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deleteUserModal-<?php echo $row['user_id']; ?>" data-whatever="@getbootstrap">
     <span class="fa fa-times-circle-o"></span>
 </a>
 <div class="modal fade" id="deleteUserModal-<?php echo $row['user_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

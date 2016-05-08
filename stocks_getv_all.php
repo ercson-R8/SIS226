@@ -53,7 +53,7 @@ if (!session_start()){
                 // [i][0] is the item number [i][1] is the item name
                 $row = queryDb( 'stock', 'item_number',$items[$j][0], 'ORDER BY stock_id DESC LIMIT 1');
                 echo '<tr class="center "><td>' . 
-                '<a href="item_history.php?i='.$items[$j][0].'" class="btn btn-xs btn-primary">
+                '<a href="item_history.php?i='.$items[$j][0].'" data-toggle="tooltip" data-placement="right" title="View Item History!" class="btn btn-xs btn-primary">
                     <span class="fa fa-history"></span>
                 </a>&nbsp;'.
                 $items[$j][1]                  . '</td><td class="center ">' .

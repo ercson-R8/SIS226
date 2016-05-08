@@ -23,6 +23,10 @@
    		$balance_available =  $row['balance_available'];
 
    	}
+	   
+	echo "<script> 
+			alert('". $balance_available. "');
+			</script>";   
 
    	//Deduct requested quantity from current available balance
    	$new_bal = $balance_available - $rq_quantity;

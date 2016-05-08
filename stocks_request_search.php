@@ -61,5 +61,7 @@
                 order: [[ 1, "asc" ]],
                 iDisplayLength: 25
         });
+        $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
+

@@ -26,3 +26,8 @@
 </div><!-- /#page-wrapper -->
 <?php include('footer.php'); ?>
 <script type="text/javascript" src="js/user.js"></script>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>

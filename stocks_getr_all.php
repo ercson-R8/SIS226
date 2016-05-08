@@ -47,7 +47,7 @@ if (!session_start()){
             while($row = mysqli_fetch_array($response)){
                 
                 echo '<tr class="center "><td>' . 
-                '<a href="stocks_receive_form.php?i='.$row['item_number'].'" class="btn btn-xs btn-primary">
+                '<a href="stocks_receive_form.php?i='.$row['item_number'].'" data-toggle="tooltip" data-placement="right" title="Receive this item!" class="btn btn-xs btn-primary">
                     <span class="fa fa-plus-square"></span>
                 </a>&nbsp;'.
                 $row['name']            . '</td><td class="center ">' .

@@ -53,7 +53,7 @@ if (!session_start()){
                 $r_q_balance = @mysqli_query($dbc, $q_balance);
                 ?>
                 <tr class="center ">
-                <td><a href="stocks_request_form.php?i=<?php echo $row['item_number']?>" class="btn btn-xs btn-primary">
+                <td><a href="stocks_request_form.php?i=<?php echo $row['item_number']?>" data-toggle="tooltip" data-placement="right" title="Request this item" class="btn btn-xs btn-primary">
                     <span class="fa fa-plus-square"></span>
                 </a></td>
                 <td><?php echo $row['name']; ?></td>
