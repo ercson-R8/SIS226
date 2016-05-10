@@ -39,6 +39,42 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"></h3>
+                            <div>
+                                <button class="btn btn-primary toggle" data-toggle="exportTable"><i class="fa fa-bars"></i> Export Data</button>
+                                <br/>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="panel-body" id="exportTable" style="display:none">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="list-group border-bottom">
+
+                                        <a href="stocks_print_pdf.php" target="_blank" class="list-group-item">
+                                        <i class="fa fa-file-pdf-o fa-2x"></i> Export to <b>PDF</b></a>
+                                        <a href="stocks_print_csv.php" target="_blank" class="list-group-item">
+                                        <i class="fa fa-bar-chart-o fa-2x"></i> Export to <b>CSV</b></a>
+                                        <a href="stocks_print_txt.php" target="_blank" class="list-group-item">
+                                        <i class="fa fa-file-text-o fa-2x"></i> &nbsp; Export to <b>Text</b></a>
+                                    </div> 
+                                </div>
+                                <!-- col-lg-5 -->
+                            </div>
+                            <!-- /.row -->
+                                
+                        </div>
+                        
+                    </div>          
+                <div/>      
+            </div>
+            <!-- /.row -->
 
         </div>
         <!-- /#page-wrapper -->
@@ -55,6 +91,17 @@
                 responsive: true
         });
         $('[data-toggle="tooltip"]').tooltip();   
+        
+         /* TOGGLE FUNCTION */
+        $(".toggle").on("click",function(){
+            var elm = $("#"+$(this).data("toggle"));
+            if(elm.is(":visible"))
+                elm.addClass("hidden").removeClass("show");
+            else
+                elm.addClass("show").removeClass("hidden");
+            
+            return false;
+        });
     });
 </script>
     
