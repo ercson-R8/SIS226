@@ -23,3 +23,18 @@ ul li.dropdown > a{
 	text-transform: capitalize;
 	font-weight: 600;
 }
+
+/*Override Bootstrap Default CSS*/
+
+.navbar {
+	min-height: 104px;
+}
+
+.navbar .navbar-right{
+	margin-top: 25px;
+}
+
+.sidebar {
+	margin-top: 104px;
+}
+
