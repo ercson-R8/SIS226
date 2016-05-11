@@ -1,5 +1,5 @@
 <a id="<?php echo $row['rq_id']; ?>" class="btn btn-xs btn-success" data-toggle="modal" data-target="#grantRequestModal-<?php echo $row['rq_id']; ?>" data-whatever="@getbootstrap" <?php echo $disabled = $row['status'] != '10' ? 'disabled':''; ?>>
-    <span class="fa fa-thumbs-down"></span> Grant
+    <span class="fa fa-thumbs-up"></span> Grant
 </a>
 <div class="modal fade" id="grantRequestModal-<?php echo $row['rq_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
