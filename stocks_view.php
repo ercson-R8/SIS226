@@ -41,14 +41,14 @@
             <!-- /.row -->
             
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title"></h3>
-                            <div>
-                                <button class="btn btn-primary toggle" data-toggle="exportTable"><i class="fa fa-bars"></i> Export Data</button>
-                                <br/>
+                            <div class="col-lg-4">
+                                <button class="btn btn-primary toggle btn-block" data-toggle="exportTable"><i class="fa fa-bars"></i> Export Data</button>
                             </div>
+                            <div class="clearfix"> </div>
                         </div>
                         
                         
@@ -88,7 +88,10 @@
     // Initialising DataTables
     $(document).ready(function() {
         $('#dataTables-items').DataTable({
-                responsive: true
+                responsive: true,
+                columnDefs: [{ orderable: false,  width: 20, targets: 0 }],
+                    order: [[ 3, "desc" ]],
+                    iDisplayLength: 25
         });
         $('[data-toggle="tooltip"]').tooltip();   
         

@@ -39,6 +39,7 @@ if (!session_start()){
             echo '
             <thead>
                 <tr>
+                    <th> </th>
                     <th>Item Name</th>
                     <th>Item No.</th>  
                     <th>Avail. Bal.</th>  
@@ -55,7 +56,7 @@ if (!session_start()){
                 echo '<tr class="center "><td>' . 
                 '<a href="item_history.php?i='.$items[$j][0].'" data-toggle="tooltip" data-placement="right" title="View Item History!" class="btn btn-xs btn-primary">
                     <span class="fa fa-history"></span>
-                </a>&nbsp;'.
+                </a></td><td>'.
                 $items[$j][1]                  . '</td><td class="center ">' .
                 $row['item_number']         . '</td><td class="center">' . 
                 $row['balance_available']   . '</td><td class="center">' .
