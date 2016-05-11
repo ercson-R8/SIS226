@@ -31,6 +31,7 @@ if (!session_start()){
             echo '
             <thead>
                 <tr>
+                    <th></th>
                     <th>Name</th>
                     <th>No.</th>  
                     <th>Loc.</th>  
@@ -47,14 +48,14 @@ if (!session_start()){
 
             while($row = mysqli_fetch_array($response)){
                 
-                echo '<tr class="center "><td>' . 
+                echo '<tr ><td>' . 
                 '<a href="item_history.php?i='.$row['item_number'].'" data-toggle="tooltip" data-placement="right" title="View Item History!" class="btn btn-xs btn-primary">
                     <span class="fa fa-history"></span>
                 </a>&nbsp;';
                 echo 
                 '<a href="item_edit_form.php?i='.$row['item_number'].'" data-toggle="tooltip" data-placement="right" title="Edit this Item!"  class="btn btn-xs btn-warning">
                     <span class="fa fa-edit"></span>
-                </a>&nbsp;'.
+                </a></td><td>'.
                 $row['name']            . '</td><td class="center ">' .
                 $row['item_number']     . '</td><td class="center">' . 
                 $row['location']        . '</td><td class="center">' . 

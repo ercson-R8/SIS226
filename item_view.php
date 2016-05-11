@@ -54,7 +54,10 @@
         // Initialising DataTables
         $(document).ready(function() {
             $('#dataTables-items').DataTable({
-                    responsive: true
+                    responsive: true,
+                     columnDefs: [{ orderable: false,  width: 55, targets: 0 }],
+                    order: [[ 1, "asc" ]],
+                    iDisplayLength: 25
             });
             $('[data-toggle="tooltip"]').tooltip();
         });
