@@ -29,6 +29,15 @@
 		mysqli_free_result($result_r);
 	}
 
+	$q_issued="SELECT * FROM transaction WHERE status = 'Issued'";
+	if ($result_i=@mysqli_query($dbc,$q_issued)){
+		// Return the number of rows in result set
+		$count_i=mysqli_num_rows($result_i);
+		mysqli_free_result($result_i);
+	}
+
+
+
 ?>
 <div id="page-wrapper">
 		<div class="row">
@@ -44,6 +53,7 @@
 						  <button type="button" class="btn btn-warning btn-md">( <?php echo $count_p; ?> ) Pending</button>
 						  <button type="button" class="btn btn-success btn-md">( <?php echo $count_a; ?> ) Granted</button>
 						  <button type="button" class="btn btn-danger btn-md">( <?php echo $count_r; ?> ) Denied</button>
+						  <button type="button" class="btn btn-info btn-md">( <?php echo $count_i; ?> ) Issued</button>
 						</div>
 					</div>
 					<div class="panel-body">
