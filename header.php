@@ -130,22 +130,18 @@
                              <a href="#"><i class="fa fa-archive fa-fw"></i> Stocks<span class="fa arrow"></span></a>
                              <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="stocks_request_search.php" ><i class="fa fa-shopping-cart fa-fw"></i>Request Stocks</a>
+                                    <a href="stocks_request_search.php" >Request Stocks</a>
                                 </li>
-                                <!-- this function will move to
-                                <li>
-                                    <a href="stocks_authorize.php"><i class="fa fa-legal fa-fw"></i>Authorize Stocks Req.</a>
-                                </li>
-                                -->
+                               
                                 <?php if ( $u_role == '3' || $u_role == '4' ) { ?>
                                 <li>
-                                    <a href="stocks_issue_search.php"><i class="fa fa-key fa-fw"></i>Issue Stocks</a>
+                                    <a href="stocks_issue_search.php">Issue Stocks</a>
                                 </li>
                                 <li>
-                                    <a href="stocks_receive_search.php"><i class="fa fa-truck fa-fw"></i>Receive Stocks</a>
+                                    <a href="stocks_receive_search.php">Receive Stocks</a>
                                 </li>
                                 <li>
-                                    <a href="stocks_view.php"><i class="fa fa-search fa-fw"></i>Search/View Stocks</a>
+                                    <a href="stocks_view.php">Search/View Stocks</a>
                                 </li>
                                 <?php } ?>
 
