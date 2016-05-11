@@ -58,9 +58,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">
-                    <img src="images/logo.png">
-                    Simplified Inventory System
+                <a class="navbar-brand" href="user_requisition.php">
+                    <img src="images/logo.png" alt="Simplified Inventory System">
                 </a>
             </div>
             <!-- /.navbar-header -->

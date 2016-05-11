@@ -11,6 +11,13 @@
 </head>
 <body>
 <div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 logo">
+            <a class="navbar-brand" href="user_requisition.php">
+                    <img src="images/logo.png" alt="Simplified Inventory System">
+                </a>
+        </div>
+    </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-login">
