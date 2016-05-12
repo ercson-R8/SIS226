@@ -71,8 +71,8 @@
                    
                     $remarks_store_manager	= "";
                     $date_requested = date("Y-m-d G:i:s");
-                    $date_authorized	= null; 
-                    $date_add = null;
+                    $date_authorized	= date("Y-m-d G:i:s"); 
+                    $date_add = date("Y-m-d G:i:s");
 
                     require('mysqli_connect.php');
                     $query = "INSERT INTO transaction ( transaction_type, authorizer, requester,

@@ -39,9 +39,9 @@
             echo '
             <thead>
                 <tr>
-                    <th>Trxn ID</th>'.
-                    // <th>User ID</th>  
-                    '<th>Received</th>  
+                    <th> </th>
+                    <th>Trxn ID</th>
+                    <th>Received</th>  
                     <th>Issued</th>      
                     <th>Bal</th>
                     <th>Avail.</th>
@@ -58,7 +58,7 @@
                 echo '<tr class="center "><td>' .
                 '<a href="item_transaction.php?i='.$row['transaction_id'].'" class="btn btn-xs btn-warning">
                     <span class="fa fa-search"></span>
-                </a>&nbsp;'.
+                </a></td><td>'.
                 
                 $row['transaction_id']      . '</td><td class="center">' .
                 //$row['user_id']             . '</td><td class="center">' . 

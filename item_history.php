@@ -8,7 +8,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header" id="item_name">Items History</h1>
+                    <h1 class="page-header" id="item_name">Item History</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -61,7 +61,10 @@
         // Initialising DataTables
         $(document).ready(function() {
             $('#dataTables-items').DataTable({
-                    responsive: true
+                    responsive: true,
+                    columnDefs: [{ orderable: true,  width: 20, targets: 0 }],
+                    order: [[ 1, "desc" ]],
+                    iDisplayLength: 10
             });
         });
     </script>
