@@ -31,15 +31,21 @@
    	//Deduct requested quantity from current available balance
    	$new_bal = $balance_available - $rq_quantity;
 	$date_process = date("Y-m-d G:i:s");
+	
+	// Update the stock table with new avail bal
+	// with ref to the $transaction_id
+	$q_update = "UPDATE stock
+					 SET balance_available = '$new_bal'
+					 WHERE transaction_id = '$transaction_id'
+					 ";
+	$result = @mysqli_query($dbc, $q_update);
+	
 
 	//Update request status to Granted
 	$q_update = "UPDATE transaction SET status = 'Granted', date_authorized = '$date_authorized', authorizer = '$authorizer' WHERE transaction_id = '$transaction_id'";
 	$result = @mysqli_query($dbc, $q_update);
 	
-	//INSERT new available balance
-   	$q_insert = "INSERT INTO stock( transaction_id, item_number, user_id, balance_available,date_process)
-   							 VALUES('$transaction_id','$item_number','$requester', '$new_bal','$date_process')";
-   	$result_q_insert = @mysqli_query($dbc, $q_insert);
+
 
 	mysqli_close($dbc);
 ?>
